@@ -7,6 +7,6 @@ Thumbs.db
 
 /node_modules
 
-/dist
+/www/app
 
 /npm-debug.log

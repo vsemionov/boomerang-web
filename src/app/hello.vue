@@ -11,9 +11,9 @@ export default {
   data () {
     return {
       msg: 'Vue.js - The Progressive JavaScript Framework'
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>
