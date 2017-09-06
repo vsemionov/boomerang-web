@@ -12,7 +12,7 @@
         name: 'hello',
         data: function () {
             return {
-                version: ''
+                version: null
             };
         },
         created: function () {
