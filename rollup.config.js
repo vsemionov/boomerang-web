@@ -1,3 +1,4 @@
+import replace from 'rollup-plugin-replace';
 import alias from 'rollup-plugin-alias';
 import vue from 'rollup-plugin-vue';
 import buble from 'rollup-plugin-buble';
@@ -42,6 +43,9 @@ const isDevelopment = process.env.NODE_ENV === `development`;
 
 if (isProduction) {
     config.sourcemap = false;
+    config.plugins.unshift(replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+    }));
     config.plugins.push(uglify());
 }
 
