@@ -19,7 +19,7 @@
             let vm = this;
             axios.get('https://boomerang-core.herokuapp.com/api/info/').then(function (response) {
                 vm.version = response.data.app.version;
-            })
+            });
         }
     };
 </script>
