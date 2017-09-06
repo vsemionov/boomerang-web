@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img src="assets/images/logo.png">
     <h1>{{ msg }}</h1>
   </div>
 </template>
@@ -15,9 +14,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  padding: 0 .25em;
-}
-</style>
