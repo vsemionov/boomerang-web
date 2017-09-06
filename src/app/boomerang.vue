@@ -10,15 +10,15 @@
 
     export default {
         name: 'hello',
-        data: function() {
+        data: function () {
             return {
                 version: ''
             };
         },
         created: function () {
             let vm = this;
-             axios.get('https://boomerang-core.herokuapp.com/api/info/').then(function (response) {
-                 vm.version = response.data.app.version;
+            axios.get('https://boomerang-core.herokuapp.com/api/info/').then(function (response) {
+                vm.version = response.data.app.version;
             })
         }
     };
