@@ -1,4 +1,12 @@
-.DS_Store
-node_modules/
-dist/
-npm-debug.log
+/.project
+/.pydevproject
+
+/.idea
+
+Thumbs.db
+
+/node_modules
+
+/dist
+
+/npm-debug.log
