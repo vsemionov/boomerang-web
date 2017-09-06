@@ -6,12 +6,20 @@
 
 
 <script>
+    import axios from 'axios';
+
     export default {
         name: 'hello',
-        data() {
+        data: function() {
             return {
-                version: '0.1.0'
+                version: ''
             };
+        },
+        created: function () {
+            let vm = this;
+             axios.get('https://boomerang-core.herokuapp.com/api/info/').then(function (response) {
+                 vm.version = response.data.version;
+            })
         }
     };
 </script>
