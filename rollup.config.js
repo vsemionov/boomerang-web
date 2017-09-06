@@ -4,16 +4,16 @@ import buble from 'rollup-plugin-buble';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeGlobals from 'rollup-plugin-node-globals';
-import butternut from 'rollup-plugin-butternut';
+import uglify from 'rollup-plugin-uglify';
 import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 
 const plugins = [
   alias({
-    vue$: 'vue/dist/vue.common.js'
+    vue$: 'vue/dist/vue.esm.js'
   }),
   vue({
-    css: './public/assets/css/app.css'
+    css: './www/app/boomerang.css'
   }),
   buble({
     objectAssign: 'Object.assign'
@@ -30,7 +30,7 @@ const plugins = [
 const config = {
   entry: './src/main.js',
   dest: './www/app/boomerang.js',
-  format: 'es',
+  format: 'iife',
   sourceMap: true,
   plugins: plugins
 };
@@ -40,7 +40,7 @@ const isDevelopment = process.env.NODE_ENV === `development`;
 
 if (isProduction) {
   config.sourceMap = false;
-  config.plugins.push(butternut());
+  config.plugins.push(uglify());
 }
 
 if (isDevelopment) {
