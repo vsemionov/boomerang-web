@@ -1,6 +1,7 @@
 import replace from 'rollup-plugin-replace';
 import alias from 'rollup-plugin-alias';
 import vue from 'rollup-plugin-vue';
+import json from 'rollup-plugin-json';
 import buble from 'rollup-plugin-buble';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -16,6 +17,7 @@ const plugins = [
     vue({
         css: './www/app/boomerang.css'
     }),
+    json(),
     buble({
         objectAssign: 'Object.assign'
     }),

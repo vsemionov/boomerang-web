@@ -1,24 +1,28 @@
 <template>
     <div>
-        <h1>Boomerang {{version}}</h1>
+        <h1>Boomerang App {{appVersion}}</h1>
+        <h1>Boomerang API {{apiVersion}}</h1>
     </div>
 </template>
 
 
 <script>
+    import {version} from '../../package.json';
+
     import axios from 'axios';
 
     export default {
         name: 'hello',
         data: function () {
             return {
-                version: null
+                appVersion: version,
+                apiVersion: null
             };
         },
         created: function () {
             let vm = this;
             axios.get('https://boomerang-core.herokuapp.com/api/info/').then(function (response) {
-                vm.version = response.data.app.version;
+                vm.apiVersion = response.data.app.version;
             });
         }
     };
