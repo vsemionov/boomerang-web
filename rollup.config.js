@@ -9,47 +9,49 @@ import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 
 const plugins = [
-  alias({
-    vue$: 'vue/dist/vue.esm.js'
-  }),
-  vue({
-    css: './www/app/boomerang.css'
-  }),
-  buble({
-    objectAssign: 'Object.assign'
-  }),
-  nodeResolve({
-    jsnext: true,
-    main: true,
-    browser: true
-  }),
-  commonjs(),
-  nodeGlobals()
+    alias({
+        vue$: 'vue/dist/vue.esm.js'
+    }),
+    vue({
+        css: './www/app/boomerang.css'
+    }),
+    buble({
+        objectAssign: 'Object.assign'
+    }),
+    nodeResolve({
+        jsnext: true,
+        main: true,
+        browser: true
+    }),
+    commonjs(),
+    nodeGlobals()
 ];
 
 const config = {
-  entry: './src/main.js',
-  dest: './www/app/boomerang.js',
-  format: 'iife',
-  sourceMap: true,
-  plugins: plugins
+    input: './src/main.js',
+    output: {
+        file: './www/app/boomerang.js',
+        format: 'iife'
+    },
+    sourcemap: true,
+    plugins: plugins
 };
 
 const isProduction = process.env.NODE_ENV === `production`;
 const isDevelopment = process.env.NODE_ENV === `development`;
 
 if (isProduction) {
-  config.sourceMap = false;
-  config.plugins.push(uglify());
+    config.sourcemap = false;
+    config.plugins.push(uglify());
 }
 
 if (isDevelopment) {
-  config.plugins.push(livereload());
-  config.plugins.push(serve({
-    contentBase: './www/',
-    port: 8080,
-    open: true
-  }));
+    config.plugins.push(livereload());
+    config.plugins.push(serve({
+        contentBase: './www/',
+        port: 8080,
+        open: true
+    }));
 }
 
 export default config;
