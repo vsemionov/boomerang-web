@@ -11,6 +11,9 @@ import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 
 const plugins = [
+    replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        }),
     alias({
         vue$: 'vue/dist/vue.esm.js'
     }),
@@ -45,9 +48,6 @@ const isDevelopment = process.env.NODE_ENV === `development`;
 
 if (isProduction) {
     config.sourcemap = false;
-    config.plugins.unshift(replace({
-        'process.env.NODE_ENV': JSON.stringify('production')
-    }));
     config.plugins.push(uglify());
 }
 
