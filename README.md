@@ -1,37 +1,24 @@
-# boomerang-web
+Boomerang-Web
+=============
 
-> Boomerang front-end
+Boomerang front-end
+-------------------
 
-## Build setup
 
-### [yarn](https://yarnpkg.com) - recommend
-``` bash
-# Install dependencies
-yarn install
+### Website
 
-# Server with hot reload at localhost:8080
-yarn run dev
+https://boomerang-notes.herokuapp.com/
 
-# Build for production with minification
-yarn run build
-```
 
-### [npm](https://www.npmjs.com/)
-``` bash
-# Install dependencies
-npm install
+### Deployment
 
-# Server with hot reload at localhost:8080
-npm run dev
+#### Local
+* install *node.js* (version 6)
+* build: `npm install`
+* start: `npm start`
 
-# Build for production with minification
-npm run build
-```
-
-## Reference
-
-- For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-## License
-
-MIT © Victor Semionov <vsemionov@gmail.com>
+#### Heroku
+* install *heroku toolbelt*
+* create a heroku application, add buildpacks *heroku/nodejs* and *https://github.com/heroku/heroku-buildpack-static*
+* connect: `heroku login && heroku git:remote -a <app_name>`
+* deploy: `git push heroku`
