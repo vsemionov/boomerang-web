@@ -12,7 +12,7 @@
     import axios from 'axios';
 
     export default {
-        name: 'hello',
+        name: 'boomerang',
         data: function () {
             return {
                 appVersion: version,
