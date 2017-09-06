@@ -9,7 +9,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Vue.js - The Progressive JavaScript Framework'
+      msg: 'Boomerang'
     };
   }
 };

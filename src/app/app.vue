@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Hello from './hello.vue';
+import Hello from './boomerang.vue';
 
 export default {
   name: 'app',
