@@ -5,6 +5,6 @@ import App from './app/app.vue';
 Vue.use(VueRouter);
 
 const app = new Vue({
-  el: '#app',
+  el: 'app',
   render: h => h(App)
 });
