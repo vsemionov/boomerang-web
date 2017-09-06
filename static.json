@@ -1,0 +1,8 @@
+{
+  "root": "dist/",
+  "https_only": true,
+  "error_page": "index.html",
+  "logging": {
+    "access": false
+  }
+}
