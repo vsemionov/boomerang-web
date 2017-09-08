@@ -18,7 +18,6 @@ Raven
     .install();
 
 
-
 const app = new Vue({
     el: 'boomerang',
     router,
