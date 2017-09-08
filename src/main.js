@@ -4,9 +4,10 @@ import VueRouter from 'vue-router';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
 
-import {version} from '../package.json';
+import { version } from '../package.json';
 
-import App from './app/app.vue';
+import router from './router.js';
+import Boomerang from './app/boomerang.vue';
 
 
 Raven
@@ -22,6 +23,7 @@ Vue.use(VueRouter);
 
 
 const app = new Vue({
-    el: 'app',
-    render: h => h(App)
+    el: 'boomerang',
+    router,
+    render: h => h(Boomerang)
 });

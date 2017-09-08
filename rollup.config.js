@@ -56,7 +56,8 @@ if (isDevelopment) {
     config.plugins.push(serve({
         contentBase: './www/',
         port: 8080,
-        open: true
+        open: true,
+        historyApiFallback: true
     }));
 }
 
