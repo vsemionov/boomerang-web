@@ -6,7 +6,7 @@ import RavenVue from 'raven-js/plugins/vue';
 import { version } from '../package.json';
 
 import router from './router.js';
-import Boomerang from './app/boomerang.vue';
+import Boomerang from './ui/boomerang.vue';
 
 
 Raven

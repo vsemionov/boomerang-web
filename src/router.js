@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import NotFound from './app/not-found.vue'
-import Index from './app/index.vue'
-import Notebooks from './app/notebooks.vue'
-import Notes from './app/notes.vue'
-import Tasks from './app/tasks.vue'
+import NotFound from './ui/not-found.vue'
+import Index from './ui/index.vue'
+import Notebooks from './ui/notebooks.vue'
+import Notes from './ui/notes.vue'
+import Tasks from './ui/tasks.vue'
 
 
 Vue.use(VueRouter);
