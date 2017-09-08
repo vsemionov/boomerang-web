@@ -13,9 +13,9 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', component: Index },
-    { path: '/users/:username/notebooks', component: Notebooks },
-    { path: '/users/:username/notebooks/:notebook_id', component: Notes },
-    { path: '/users/:username/tasks', component: Tasks },
+    { path: '/:username/notebooks', component: Notebooks, props: true },
+    { path: '/:username/notebooks/:notebook_id', component: Notes, props: true },
+    { path: '/:username/tasks', component: Tasks, props: true },
     { path: '*', component: NotFound }
 ];
 

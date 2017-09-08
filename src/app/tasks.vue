@@ -1,10 +1,14 @@
 <template>
-    <h2>Tasks</h2>
+    <div>
+        <h2>Tasks</h2>
+        <p>user: {{username}}</p>
+    </div>
 </template>
 
 
 <script>
     export default {
-        name: 'tasks'
+        name: 'tasks',
+        props: ['username']
     };
 </script>
