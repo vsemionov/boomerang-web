@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
@@ -18,8 +17,6 @@ Raven
     .addPlugin(RavenVue, Vue)
     .install();
 
-
-Vue.use(VueRouter);
 
 
 const app = new Vue({
