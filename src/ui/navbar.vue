@@ -27,12 +27,15 @@
 
 
 <script>
-    import { authState } from '../auth.js';
+    import { authState, updateAuthState } from '../auth.js';
 
     export default {
         name: 'navbar',
         data () {
             return { authState };
+        },
+        created () {
+            updateAuthState();
         }
     };
 </script>
