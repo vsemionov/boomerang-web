@@ -1,4 +1,8 @@
 import decode from 'jwt-decode';
+import axios from 'axios';
+
+import { JWT_URL } from './urls.js';
+import handleError from './error.js';
 
 
 const JWT_KEY = 'jwt';
@@ -53,4 +57,9 @@ export function getValidAuthToken() {
     }
 
     return token;
+}
+
+export function authenticate(username, password) {
+    const headers = { Authorization: 'Basic ' + btoa(`${username}:${password}`) };
+    return axios.get(JWT_URL, { headers }).then(response => login(response.data.token)).catch(error => handleError(error));
 }

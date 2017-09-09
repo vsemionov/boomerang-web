@@ -17,14 +17,14 @@
         <p></p>
         <br/>
 
-        <form class="form-signin">
+        <form class="form-signin" @submit.prevent="authenticate">
             <div class="form-group">
-                <label for="login">Username or email</label>
-                <input type="text" id="login" class="form-control" placeholder="Username or email" required autofocus>
+                <label for="username">Username or email</label>
+                <input type="text" id="username" v-model="username" class="form-control" placeholder="Username or email" required autofocus>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <input type="password" id="password" v-model="password" class="form-control" placeholder="Password" required>
             </div>
           <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
@@ -34,7 +34,21 @@
 
 
 <script>
+    import { authenticate } from '../auth.js';
+
     export default {
-        name: 'login'
+        name: 'login',
+        data: function () {
+            return {
+                username: null,
+                password: null
+            }
+        },
+        methods: {
+            authenticate: function () {
+                //authenticate(this.login, this.password).then(() => this.router.push('/'));
+                authenticate(this.username, this.password);
+            }
+        }
     };
 </script>
