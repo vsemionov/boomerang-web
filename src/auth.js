@@ -13,9 +13,7 @@ function getAuthToken() {
     return localStorage.getItem(JWT_KEY);
 }
 
-export function updateAuthState() {
-    const token = getAuthToken();
-
+function updateValidAuthState(token) {
     let username = null;
 
     if (token) {
@@ -28,14 +26,19 @@ export function updateAuthState() {
     authState.username = username;
 }
 
+export function updateAuthState() {
+    const token = getAuthToken();
+    updateValidAuthState(token);
+}
+
 export function login(token) {
     localStorage.setItem(JWT_KEY, token);
-    updateAuthState();
+    updateValidAuthState(token);
 }
 
 export function logout() {
     localStorage.removeItem(JWT_KEY);
-    updateAuthState();
+    updateValidAuthState(null);
 }
 
 export function getValidAuthToken() {
