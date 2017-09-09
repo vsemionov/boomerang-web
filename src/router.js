@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import { updateAuthState } from './auth.js';
 import NotFound from './ui/not-found.vue'
 import Index from './ui/index.vue'
 import Notebooks from './ui/notebooks.vue'
@@ -20,8 +21,15 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    routes,
-    mode: 'history'
+    mode: 'history',
+    routes
 });
+
+
+router.beforeEach((to, from, next) => {
+    updateAuthState();
+    next();
+});
+
 
 export default router;
