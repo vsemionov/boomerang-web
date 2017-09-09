@@ -34,7 +34,7 @@
 
 
 <script>
-    import { authenticate } from '../auth.js';
+    import { authState, authenticate } from '../auth.js';
 
     export default {
         name: 'login',
@@ -46,8 +46,7 @@
         },
         methods: {
             authenticate: function () {
-                //authenticate(this.login, this.password).then(() => this.router.push('/'));
-                authenticate(this.username, this.password);
+                authenticate(this.username, this.password).then(() => this.$router.push(`/${authState.username}`));
             }
         }
     };
