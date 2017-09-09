@@ -34,7 +34,7 @@
 
 
 <script>
-    import { authState, authenticate } from '../auth.js';
+    import { authState, authenticate } from '../../auth.js';
 
     export default {
         name: 'login',

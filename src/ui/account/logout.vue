@@ -1,5 +1,5 @@
 <script>
-    import { logout } from '../auth.js';
+    import { logout } from '../../auth.js';
 
     export default {
         name: 'logout',

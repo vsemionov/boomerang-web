@@ -2,10 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Index from './ui/index.vue'
-import Login from './ui/login.vue'
-import Logout from './ui/logout.vue'
-import Signup from './ui/signup.vue'
-import Settings from './ui/settings.vue'
+import Login from './ui/account/login.vue'
+import Logout from './ui/account/logout.vue'
+import Signup from './ui/account/signup.vue'
+import Settings from './ui/account/settings.vue'
 import User from './ui/user.vue'
 import Notebooks from './ui/notebooks.vue'
 import Notes from './ui/notes.vue'
