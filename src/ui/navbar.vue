@@ -31,10 +31,10 @@
 
     export default {
         name: 'navbar',
-        data () {
+        data: function () {
             return { authState };
         },
-        created () {
+        created: function () {
             updateAuthState();
         }
     };
