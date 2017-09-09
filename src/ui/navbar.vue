@@ -7,16 +7,16 @@
 
             <ul class="nav navbar-nav pull-right">
                 <template v-if="!authState.username">
-                    <router-link tag="li" to="/login" active-class="active"><a href="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log In</a></router-link>
-                    <router-link tag="li" to="/signup" active-class="active"><a href="/signup"><span class="glyphicon glyphicon-check"></span>&nbsp;Sign Up</a></router-link>
+                    <router-link tag="li" to="/account/login" active-class="active"><a href="/account/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log In</a></router-link>
+                    <router-link tag="li" to="/account/signup" active-class="active"><a href="/account/signup"><span class="glyphicon glyphicon-check"></span>&nbsp;Sign Up</a></router-link>
                 </template>
 
                 <template v-else>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;{{authState.username}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <router-link tag="li" to="/settings" active-class="active"><a href="/settings"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a></router-link>
-                            <li><router-link to="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</router-link></li>
+                            <li><router-link to="/account/settings"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</router-link></li>
+                            <li><router-link to="/account/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</router-link></li>
                         </ul>
                     </li>
                 </template>
