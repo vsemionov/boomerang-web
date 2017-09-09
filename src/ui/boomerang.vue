@@ -7,14 +7,14 @@
                 </div>
 
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log In</a></li>
-                    <li><a href="/signup"><span class="glyphicon glyphicon-check"></span>&nbsp;Sign Up</a></li>
+                    <li><router-link to="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log In</router-link></li>
+                    <li><router-link to="/signup"><span class="glyphicon glyphicon-check"></span>&nbsp;Sign Up</router-link></li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;vsemionov<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/settings"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a></li>
-                            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</a></li>
+                            <li><router-link to="/settings"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</router-link></li>
+                            <li><router-link to="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</router-link></li>
                         </ul>
                     </li>
                 </ul>
