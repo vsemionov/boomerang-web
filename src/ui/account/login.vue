@@ -20,7 +20,7 @@
         <form class="form-signin" @submit.prevent="authenticate">
             <div class="form-group">
                 <label for="username">Username or email</label>
-                <input type="text" id="username" v-model="username" class="form-control" placeholder="Username or email" required autofocus>
+                <input type="text" id="username" v-model="username" ref="username" class="form-control" placeholder="Username or email" required autofocus>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -48,6 +48,9 @@
             authenticate: function () {
                 authenticate(this.username, this.password).then(() => this.$router.push(`/${authState.username}`));
             }
+        },
+        mounted: function () {
+            this.$refs.username.focus();
         }
     };
 </script>
