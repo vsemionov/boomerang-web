@@ -60,8 +60,14 @@ export function getValidAuthToken() {
 }
 
 export function authenticate(username, password) {
-    const headers = { Authorization: 'Basic ' + btoa(`${username}:${password}`) };
-    return axios.get(API_URL + 'jwt/', { headers })
+    const options = {};
+    if (username) {
+        options.headers = { Authorization: 'Basic ' + btoa(`${username}:${password}`) };
+    } else {
+        options.withCredentials = true;
+    }
+
+    return axios.get(API_URL + 'jwt/', options)
         .then(response => login(response.data.token))
         .catch(error => handleError(error));
 }

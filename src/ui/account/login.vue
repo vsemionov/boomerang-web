@@ -4,15 +4,11 @@
 
         <br/>
 
-        <a class="btn btn-social btn-facebook" href="/accounts/facebook/login/?process=login">
-            <span class="fa fa-facebook"></span> Sign in with Facebook
-        </a>
+        <a class="btn btn-social btn-facebook" :href="getSocialLoginUrl('facebook')"><span class="fa fa-facebook"></span> Sign in with Facebook</a>
 
         <p></p>
 
-        <a class="btn btn-social btn-google" href="/accounts/google/login/?process=login">
-            <span class="fa fa-google"></span> Sign in with Google
-        </a>
+        <a class="btn btn-social btn-google" :href="getSocialLoginUrl('google')"><span class="fa fa-google"></span> Sign in with Google</a>
 
         <p></p>
         <br/>
@@ -34,6 +30,7 @@
 
 
 <script>
+    import { BASE_URL } from '../../urls.js';
     import { authState, authenticate } from '../../auth.js';
 
     export default {
@@ -45,6 +42,11 @@
             }
         },
         methods: {
+            getSocialLoginUrl: function (provider) {
+                const callbackUrlEncoded = encodeURIComponent(location.origin + '/account/callback');
+                const apiRedirectUrlEncoded = encodeURIComponent(`/redirect?to=${callbackUrlEncoded}`);
+                return BASE_URL + `accounts/${provider}/login?process=login&next=${apiRedirectUrlEncoded}`;
+            },
             authenticate: function () {
                 authenticate(this.username, this.password).then(() => this.$router.push(`/${authState.username}`));
             }

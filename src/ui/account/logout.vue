@@ -1,3 +1,8 @@
+<template>
+    <div></div>
+</template>
+
+
 <script>
     import { logout } from '../../auth.js';
 
