@@ -5,7 +5,6 @@ import Index from './ui/index.vue'
 import Login from './ui/account/login.vue'
 import Logout from './ui/account/logout.vue'
 import Callback from './ui/account/callback.vue'
-import User from './ui/user.vue'
 import Notebooks from './ui/notebooks.vue'
 import Notes from './ui/notes.vue'
 import Tasks from './ui/tasks.vue'
@@ -17,13 +16,12 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', component: Index },
-    { path: '/account/login', component: Login },
-    { path: '/account/logout', component: Logout },
-    { path: '/account/callback', component: Callback },
-    { path: '/:username', component: User, props: true },
-    { path: '/:username/notebooks', component: Notebooks, props: true },
-    { path: '/:username/notebooks/:notebook_id', component: Notes, props: true },
-    { path: '/:username/tasks', component: Tasks, props: true },
+    { path: '/login', component: Login },
+    { path: '/logout', component: Logout },
+    { path: '/login/callback', component: Callback },
+    { path: '/notebooks/:username', component: Notebooks, props: true },
+    { path: '/notebooks/:username/:notebook_id', component: Notes, props: true },
+    { path: '/tasks/:username', component: Tasks, props: true },
     { path: '*', component: NotFound }
 ];
 

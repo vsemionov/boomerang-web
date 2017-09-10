@@ -4,12 +4,12 @@
 
 
 <script>
-    import { authState, authenticate } from '../../auth.js';
+    import { authenticate } from '../../auth.js';
 
     export default {
         name: 'callback',
         created: function () {
-            authenticate().then(() => this.$router.push(`/${authState.username}`));
+            authenticate().then(() => this.$router.push('/'));
         }
     };
 </script>

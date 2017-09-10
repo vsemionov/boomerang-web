@@ -31,7 +31,7 @@
 
 <script>
     import { BASE_URL } from '../../urls.js';
-    import { authState, authenticate } from '../../auth.js';
+    import { authenticate } from '../../auth.js';
 
     export default {
         name: 'login',
@@ -43,12 +43,12 @@
         },
         methods: {
             getSocialLoginUrl: function (provider) {
-                const callbackUrlEncoded = encodeURIComponent(location.origin + '/account/callback');
+                const callbackUrlEncoded = encodeURIComponent(location.origin + '/login/callback');
                 const apiRedirectUrlEncoded = encodeURIComponent(`/redirect?to=${callbackUrlEncoded}`);
                 return BASE_URL + `accounts/${provider}/login?process=login&next=${apiRedirectUrlEncoded}`;
             },
             authenticate: function () {
-                authenticate(this.username, this.password).then(() => this.$router.push(`/${authState.username}`));
+                authenticate(this.username, this.password).then(() => this.$router.push('/'));
             }
         },
         mounted: function () {
