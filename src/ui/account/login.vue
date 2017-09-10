@@ -25,6 +25,9 @@
           <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
 
+        <spinner v-if="working"></spinner>
+
+        <error v-if="error" :error="error"></error>
     </div>
 </template>
 
@@ -32,13 +35,17 @@
 <script>
     import { BASE_URL } from '../../urls.js';
     import { authenticate } from '../../auth.js';
+    import Spinner from '../spinner.vue';
+    import Error from '../error.vue';
 
     export default {
         name: 'login',
+        components: { Spinner, Error },
         data: function () {
             return {
                 username: null,
-                password: null
+                password: null,
+                working: false
             }
         },
         methods: {
@@ -48,7 +55,10 @@
                 return BASE_URL + `accounts/${provider}/login?process=login&next=${apiRedirectUrlEncoded}`;
             },
             authenticate: function () {
-                authenticate(this.username, this.password).then(() => this.$router.push('/'));
+                this.working = true;
+                authenticate(this.username, this.password)
+                    .then(() => this.$router.push('/'))
+                    .catch(error => { this.working = false; this.error = error; });
             }
         },
         mounted: function () {
