@@ -2,7 +2,6 @@ import decode from 'jwt-decode';
 import axios from 'axios';
 
 import { API_URL } from './urls.js';
-import handleError from './error.js';
 
 
 const JWT_KEY = 'jwt';
@@ -53,7 +52,5 @@ export function authenticate(username, password) {
         options.withCredentials = true;
     }
 
-    return axios.get(API_URL + 'jwt/', options)
-        .then(response => login(response.data.token))
-        .catch(error => handleError(error));
+    return axios.get(API_URL + 'jwt/', options).then(response => login(response.data.token));
 }
