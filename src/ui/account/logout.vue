@@ -10,7 +10,7 @@
         name: 'logout',
         created: function () {
             logout();
-            this.$router.push('/');
+            this.$router.push({ name: 'index' });
         }
     };
 </script>

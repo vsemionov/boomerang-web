@@ -16,13 +16,13 @@ Vue.use(VueRouter);
 
 
 const routes = [
-    { path: '/', component: Index },
-    { path: '/login', component: Login },
-    { path: '/logout', component: Logout },
-    { path: '/login/callback', component: Callback },
-    { path: '/notebooks/:username', component: Notebooks, props: true },
-    { path: '/notebooks/:username/:notebook_id', component: Notes, props: true },
-    { path: '/tasks/:username', component: Tasks, props: true },
+    { path: '/', name: 'index', component: Index },
+    { path: '/login', name: 'login', component: Login },
+    { path: '/logout', name: 'logout', component: Logout },
+    { path: '/login/callback', name: 'login-callback', component: Callback },
+    { path: '/notebooks/:username', name: 'notebooks', component: Notebooks, props: true },
+    { path: '/notebooks/:username/:notebook_id', name: 'notes', component: Notes, props: true },
+    { path: '/tasks/:username', name: 'tasks', component: Tasks, props: true },
     { path: '*', component: NotFound }
 ];
 

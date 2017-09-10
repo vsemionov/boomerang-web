@@ -50,14 +50,15 @@
         },
         methods: {
             getSocialLoginUrl: function (provider) {
-                const callbackUrlEncoded = encodeURIComponent(location.origin + '/login/callback');
+                const loginCallbackHref = this.$router.resolve({ name: 'login-callback' }).href;
+                const callbackUrlEncoded = encodeURIComponent(location.origin + loginCallbackHref);
                 const apiRedirectUrlEncoded = encodeURIComponent(`/redirect?to=${callbackUrlEncoded}`);
                 return BASE_URL + `accounts/${provider}/login?process=login&next=${apiRedirectUrlEncoded}`;
             },
             authenticate: function () {
                 this.working = true;
                 authenticate(this.username, this.password)
-                    .then(() => this.$router.push('/'))
+                    .then(() => this.$router.push({ name: 'index' }))
                     .catch(error => { this.working = false; this.error = error; });
             }
         },

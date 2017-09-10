@@ -21,7 +21,7 @@
         },
         created: function () {
             authenticate()
-                .then(() => this.$router.push('/'))
+                .then(() => this.$router.push({ name: 'index' }))
                 .catch(error => this.error = error);
         }
     };
