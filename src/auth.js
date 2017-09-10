@@ -13,11 +13,11 @@ export const authState = {
 };
 
 
-function getAuthToken() {
+export function getAuthToken() {
     return localStorage.getItem(JWT_KEY);
 }
 
-function updateValidAuthState(token) {
+function updateAuthStateFromToken(token) {
     let username = null;
 
     if (token) {
@@ -32,31 +32,17 @@ function updateValidAuthState(token) {
 
 export function updateAuthState() {
     const token = getAuthToken();
-    updateValidAuthState(token);
+    updateAuthStateFromToken(token);
 }
 
 export function login(token) {
     localStorage.setItem(JWT_KEY, token);
-    updateValidAuthState(token);
+    updateAuthStateFromToken(token);
 }
 
 export function logout() {
     localStorage.removeItem(JWT_KEY);
-    updateValidAuthState(null);
-}
-
-export function getValidAuthToken() {
-    const token = getAuthToken();
-
-    if (token) {
-        const payload = decode(token);
-        if (payload.exp * 1000 <= Date.now()) {
-            logout();
-            return null;
-        }
-    }
-
-    return token;
+    updateAuthStateFromToken(null);
 }
 
 export function authenticate(username, password) {

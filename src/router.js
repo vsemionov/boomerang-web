@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import { updateAuthState } from './auth.js';
 import Index from './ui/index.vue'
 import Login from './ui/account/login.vue'
 import Logout from './ui/account/logout.vue'
@@ -29,5 +30,12 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
+
+
+router.beforeEach((to, from, next) => {
+    updateAuthState();
+    next();
+});
+
 
 export default router;

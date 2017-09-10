@@ -27,7 +27,7 @@
 
 
 <script>
-    import { authState, updateAuthState } from '../auth.js';
+    import { authState } from '../auth.js';
     import { BASE_URL } from '../urls.js';
 
     export default {
@@ -37,9 +37,6 @@
                 authState,
                 apiAccountsBaseUrl: BASE_URL + 'accounts/'
             };
-        },
-        created: function () {
-            updateAuthState();
         }
     };
 </script>
