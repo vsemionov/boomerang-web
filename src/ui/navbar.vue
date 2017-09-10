@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-static-top navbar-inverse">
+    <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <router-link to="/" class="navbar-brand" @click.native="$event.target.blur()">Boomerang</router-link>
