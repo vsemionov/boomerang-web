@@ -7,9 +7,9 @@
   "scripts": {
     "build": "run-s build:**",
     "build:js": "cross-env NODE_ENV=production rollup -c",
-    "build:css": "nodetouch www/app/boomerang.css",
-    "build:autoprefixer": "postcss --use autoprefixer -o www/app/boomerang.css www/app/boomerang.css",
-    "build:cssnano": "cssnano www/app/boomerang.css www/app/boomerang.css",
+    "build:css": "nodetouch www/boomerang/boomerang.css",
+    "build:autoprefixer": "postcss --use autoprefixer -o www/boomerang/boomerang.css www/boomerang/boomerang.css",
+    "build:cssnano": "cssnano www/boomerang/boomerang.css www/boomerang/boomerang.css",
 
     "start": "cross-env NODE_ENV=development rollup -cw",
 

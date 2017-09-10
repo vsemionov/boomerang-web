@@ -18,7 +18,7 @@ const plugins = [
         vue$: 'vue/dist/vue.esm.js'
     }),
     vue({
-        css: './www/app/boomerang.css'
+        css: './www/boomerang/boomerang.css'
     }),
     json(),
     buble({
@@ -36,7 +36,7 @@ const plugins = [
 const config = {
     input: './src/main.js',
     output: {
-        file: './www/app/boomerang.js',
+        file: './www/boomerang/boomerang.js',
         format: 'iife'
     },
     sourcemap: true,
