@@ -47,7 +47,7 @@ export function logout() {
 export function authenticate(username, password) {
     const options = {};
     if (username) {
-        options.headers = { Authorization: 'Basic ' + btoa(`${username}:${password}`) };
+        options.auth = { username: username, password: password };
     } else {
         options.withCredentials = true;
     }
