@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>Error</h3>
+        <h2>Error</h2>
 
         <template v-if="error.response">
             <p v-if="error.response.status == 404">Not found</p>

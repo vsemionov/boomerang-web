@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Notebooks</h2>
+        <h1>Notebooks</h1>
         <p>user: {{username}}</p>
     </div>
 </template>

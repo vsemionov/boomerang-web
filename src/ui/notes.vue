@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Notes</h2>
+        <h1>Notes</h1>
         <p>user: {{username}}</p>
         <p>notebook: {{notebook_id}}</p>
     </div>
