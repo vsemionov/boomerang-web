@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Tasks</h1>
-        <p>user: {{username}}</p>
+        <p>user: {{ username }}</p>
     </div>
 </template>
 

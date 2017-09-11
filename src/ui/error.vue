@@ -7,7 +7,7 @@
             <p v-else-if="error.response.status == 401">Unauthorized</p>
             <p v-else-if="error.response.status == 403">Forbidden</p>
             <p v-else-if="error.response.status == 409">Conflict</p>
-            <p v-else>Unknown error ({{error.response.status}})</p>
+            <p v-else>Unknown error ({{ error.response.status }})</p>
         </template>
 
         <p v-else>Communication error</p>

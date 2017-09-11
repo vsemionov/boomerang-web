@@ -13,7 +13,7 @@
 
                 <template v-else>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;{{authState.username}}<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;{{ authState.username }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a :href="apiAccountsBaseUrl + 'email/'" target="_blank"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a></li>
                             <li><router-link :to="{ name: 'logout' }"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</router-link></li>
@@ -32,6 +32,7 @@
 
     export default {
         name: 'navbar',
+
         data: function () {
             return {
                 authState,

@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>Notes</h1>
-        <p>user: {{username}}</p>
-        <p>notebook: {{notebook_id}}</p>
+        <p>user: {{ username }}</p>
+        <p>notebook: {{ notebook_id }}</p>
     </div>
 </template>
 
