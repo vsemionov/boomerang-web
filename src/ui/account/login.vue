@@ -45,7 +45,8 @@
             return {
                 username: null,
                 password: null,
-                working: false
+                working: false,
+                error: null
             }
         },
         methods: {
@@ -57,6 +58,7 @@
             },
             authenticate: function () {
                 this.working = true;
+                this.error = null;
                 authenticate(this.username, this.password)
                     .then(() => this.$router.push({ name: 'index' }))
                     .catch(error => { this.working = false; this.error = error; });
