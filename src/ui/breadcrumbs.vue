@@ -12,7 +12,7 @@
 
         methods: {
             hasRoutes: function () {
-                return this.$route.meta && !!this.$route.meta.breadcrumbs;
+                return !!this.$route.meta && !!this.$route.meta.breadcrumbs;
             },
 
             getLinkedRoutes: function () {
