@@ -7,37 +7,18 @@
 
 
 <script>
-    const routes = {
-        index: ['Home'],
-        login: ['Login'],
-        logout: ['Logout'],
-        notebooks: [
-            { name: 'Home', location: { name: 'index' } },
-            'Notebooks'
-        ],
-        notes: [
-            { name: 'Home', location: { name: 'index' } },
-            { name: 'Notebooks', location: { name: 'notebooks', params: ['username'] } },
-            'Notes'
-        ],
-        tasks: [
-            { name: 'Home', location: { name: 'index' } },
-            'Tasks'
-        ],
-    };
-
     export default {
         name: 'breadcrumbs',
 
         methods: {
             hasRoutes: function () {
-                return !!this.$route.name && !!routes[this.$route.name];
+                return this.$route.meta && !!this.$route.meta.breadcrumbs;
             },
 
             getLinkedRoutes: function () {
                 const linkedRoutes = [];
 
-                const breadcrumbs = routes[this.$route.name];
+                const breadcrumbs = this.$route.meta.breadcrumbs;
                 const linkedBreadcrumbs = breadcrumbs.slice(0, -1);
 
                 for (let bc in linkedBreadcrumbs) {
@@ -57,7 +38,7 @@
             },
 
             getActiveRoute: function () {
-                const breadcrumbs = routes[this.$route.name];
+                const breadcrumbs = this.$route.meta.breadcrumbs;
                 return breadcrumbs[breadcrumbs.length - 1];
             }
         }

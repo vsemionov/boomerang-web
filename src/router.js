@@ -16,14 +16,78 @@ Vue.use(VueRouter);
 
 
 const routes = [
-    { path: '/', name: 'index', component: Index },
-    { path: '/login', name: 'login', component: Login },
-    { path: '/logout', name: 'logout', component: Logout },
-    { path: '/login/callback', name: 'login-callback', component: Callback },
-    { path: '/notebooks/:username', name: 'notebooks', component: Notebooks, props: true },
-    { path: '/notebooks/:username/:notebook_id', name: 'notes', component: Notes, props: true },
-    { path: '/tasks/:username', name: 'tasks', component: Tasks, props: true },
-    { path: '*', component: NotFound }
+    {
+        path: '/',
+        name: 'index',
+        component: Index,
+        meta: {
+            breadcrumbs: [
+                'Home'
+            ]
+        }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+        meta: {
+            breadcrumbs: [
+                { name: 'Home', location: { name: 'index' } },
+                'Log In'
+            ]
+        }
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: Logout
+    },
+    {
+        path: '/login/callback',
+        name: 'login-callback',
+        component: Callback
+    },
+    {
+        path: '/notebooks/:username',
+        name: 'notebooks',
+        component: Notebooks,
+        props: true,
+        meta: {
+            breadcrumbs: [
+                { name: 'Home', location: { name: 'index' } },
+                'Notebooks'
+            ]
+        }
+    },
+    {
+        path: '/notebooks/:username/:notebook_id',
+        name: 'notes',
+        component: Notes,
+        props: true,
+        meta: {
+            breadcrumbs: [
+                { name: 'Home', location: { name: 'index' } },
+                { name: 'Notebooks', location: { name: 'notebooks', params: ['username'] } },
+                'Notes'
+            ]
+        }
+    },
+    {
+        path: '/tasks/:username',
+        name: 'tasks',
+        component: Tasks,
+        props: true,
+        meta: {
+            breadcrumbs: [
+                { name: 'Home', location: { name: 'index' } },
+                'Tasks'
+            ]
+        }
+    },
+    {
+        path: '*',
+        component: NotFound
+    }
 ];
 
 const router = new VueRouter({
