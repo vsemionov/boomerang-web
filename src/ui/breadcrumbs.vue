@@ -22,12 +22,12 @@
                 const linkedBreadcrumbs = breadcrumbs.slice(0, -1);
 
                 for (let bc in linkedBreadcrumbs) {
-                    const breadcrumb = linkedBreadcrumbs[bc]; // workaround: buble seems to not support 'of' iteration
+                    const breadcrumb = linkedBreadcrumbs[bc];
 
                     const linkedRoute = { name: breadcrumb.name, location: { name: breadcrumb.location.name, params: {}} };
 
                     for (let p in breadcrumb.location.params) {
-                        const param = breadcrumb.location.params[p]; // workaround: buble seems to not support 'of' iteration
+                        const param = breadcrumb.location.params[p];
                         linkedRoute.location.params[param] = this.$route.params[param];
                     }
 
