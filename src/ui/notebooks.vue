@@ -3,7 +3,7 @@
         <h1>Notebooks</h1>
 
         <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }">
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ notebook.name }}</h3>
                 </div>
