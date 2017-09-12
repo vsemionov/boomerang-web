@@ -19,23 +19,12 @@ const routes = [
     {
         path: '/',
         name: 'index',
-        component: Index,
-        meta: {
-            breadcrumbs: [
-                'Home'
-            ]
-        }
+        component: Index
     },
     {
         path: '/login',
         name: 'login',
-        component: Login,
-        meta: {
-            breadcrumbs: [
-                { name: 'Home', location: { name: 'index' } },
-                'Log In'
-            ]
-        }
+        component: Login
     },
     {
         path: '/logout',
@@ -51,38 +40,19 @@ const routes = [
         path: '/notebooks/:username',
         name: 'notebooks',
         component: Notebooks,
-        props: true,
-        meta: {
-            breadcrumbs: [
-                { name: 'Home', location: { name: 'index' } },
-                'Notebooks'
-            ]
-        }
+        props: true
     },
     {
         path: '/notebooks/:username/:notebook_id',
         name: 'notes',
         component: Notes,
-        props: true,
-        meta: {
-            breadcrumbs: [
-                { name: 'Home', location: { name: 'index' } },
-                { name: 'Notebooks', location: { name: 'notebooks', params: ['username'] } },
-                'Notes'
-            ]
-        }
+        props: true
     },
     {
         path: '/tasks/:username',
         name: 'tasks',
         component: Tasks,
-        props: true,
-        meta: {
-            breadcrumbs: [
-                { name: 'Home', location: { name: 'index' } },
-                'Tasks'
-            ]
-        }
+        props: true
     },
     {
         path: '*',
@@ -90,7 +60,30 @@ const routes = [
     }
 ];
 
-const router = new VueRouter({
+export const routeBreadcrumbs = {
+    index: [
+        'Home'
+    ],
+    login: [
+        { name: 'Home', location: { name: 'index' } },
+        'Log In'
+    ],
+    notebooks: [
+        { name: 'Home', location: { name: 'index' } },
+        'Notebooks'
+    ],
+    notes: [
+        { name: 'Home', location: { name: 'index' } },
+        { name: 'Notebooks', location: { name: 'notebooks', params: ['username'] } },
+        'Notes'
+    ],
+    tasks: [
+        { name: 'Home', location: { name: 'index' } },
+        'Tasks'
+    ]
+};
+
+export const router = new VueRouter({
     mode: 'history',
     routes
 });
@@ -100,6 +93,3 @@ router.beforeEach((to, from, next) => {
     updateAuthState();
     next();
 });
-
-
-export default router;

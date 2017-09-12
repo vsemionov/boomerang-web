@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { version } from '../package.json';
 import { API_URL } from './urls.js';
-import router from './router.js';
+import { router } from './router.js';
 import Boomerang from './ui/boomerang.vue';
 
 

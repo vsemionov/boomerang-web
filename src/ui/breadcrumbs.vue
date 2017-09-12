@@ -7,18 +7,20 @@
 
 
 <script>
+    import { routeBreadcrumbs } from '../router.js';
+
     export default {
         name: 'breadcrumbs',
 
         methods: {
             hasRoutes: function () {
-                return !!this.$route.meta && !!this.$route.meta.breadcrumbs;
+                return !!this.$route.name && !!routeBreadcrumbs[this.$route.name];
             },
 
             getLinkedRoutes: function () {
                 const linkedRoutes = [];
 
-                const breadcrumbs = this.$route.meta.breadcrumbs;
+                const breadcrumbs = routeBreadcrumbs[this.$route.name];
                 const linkedBreadcrumbs = breadcrumbs.slice(0, -1);
 
                 for (let bc in linkedBreadcrumbs) {
@@ -38,7 +40,7 @@
             },
 
             getActiveRoute: function () {
-                const breadcrumbs = this.$route.meta.breadcrumbs;
+                const breadcrumbs = routeBreadcrumbs[this.$route.name];
                 return breadcrumbs[breadcrumbs.length - 1];
             }
         }
