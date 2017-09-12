@@ -26,7 +26,7 @@
                 for (let bc in linkedBreadcrumbs) {
                     const breadcrumb = linkedBreadcrumbs[bc];
 
-                    const linkedRoute = { name: breadcrumb.name, location: { name: breadcrumb.location.name, params: {}} };
+                    const linkedRoute = { name: breadcrumb.name, location: { name: breadcrumb.location.name, params: {} } };
 
                     for (let p in breadcrumb.location.params) {
                         const param = breadcrumb.location.params[p];
