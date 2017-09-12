@@ -1,6 +1,6 @@
 {
   "name": "boomerang-web",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Boomerang front-end",
   "author": "Victor Semionov <vsemionov@gmail.com>",
   "private": true,
