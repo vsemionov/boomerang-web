@@ -3,7 +3,7 @@
         <h1>Notes</h1>
 
         <a href="#" v-for="note in notes">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ note.title }}</h3>
                 </div>
