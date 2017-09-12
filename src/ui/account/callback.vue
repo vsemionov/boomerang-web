@@ -14,11 +14,13 @@
     export default {
         name: 'callback',
         components: { Spinner, Error },
+
         data: function () {
             return {
                 error: null
             };
         },
+
         created: function () {
             authenticate()
                 .then(() => this.$router.push({ name: 'index' }))

@@ -41,6 +41,7 @@
     export default {
         name: 'login',
         components: { Spinner, Error },
+
         data: function () {
             return {
                 username: null,
@@ -49,6 +50,7 @@
                 error: null
             }
         },
+
         methods: {
             getSocialLoginUrl: function (provider) {
                 const loginCallbackHref = this.$router.resolve({ name: 'login-callback' }).href;
@@ -56,6 +58,7 @@
                 const apiRedirectUrlEncoded = encodeURIComponent(`/redirect?to=${callbackUrlEncoded}`);
                 return BASE_URL + `accounts/${provider}/login?process=login&next=${apiRedirectUrlEncoded}`;
             },
+
             authenticate: function () {
                 this.working = true;
                 this.error = null;
@@ -64,6 +67,7 @@
                     .catch(error => { this.working = false; this.error = error; });
             }
         },
+
         mounted: function () {
             this.$refs.username.focus();
         }

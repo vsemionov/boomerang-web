@@ -8,6 +8,7 @@
 
     export default {
         name: 'logout',
+
         created: function () {
             logout();
             this.$router.push({ name: 'index' });
