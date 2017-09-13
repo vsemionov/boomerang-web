@@ -11,7 +11,7 @@ export function getNotebooks(username) {
         }
     };
 
-    return axios.get(`users/${username}/notebooks/`, options).then(response => response.data.results);
+    return axios.get(`users/${username}/notebooks/?sort=-updated`, options).then(response => response.data.results);
 }
 
 export function getNotes(username, notebook_id) {
@@ -23,7 +23,7 @@ export function getNotes(username, notebook_id) {
         }
     };
 
-    return axios.get(`users/${username}/notebooks/${notebook_id}/notes/`, options).then(response => response.data.results);
+    return axios.get(`users/${username}/notebooks/${notebook_id}/notes/?sort=-updated`, options).then(response => response.data.results);
 }
 
 export function getTasks(username) {
@@ -35,5 +35,5 @@ export function getTasks(username) {
         }
     };
 
-    return axios.get(`users/${username}/tasks/`, options).then(response => response.data.results);
+    return axios.get(`users/${username}/tasks/?sort=done,-updated`, options).then(response => response.data.results);
 }
