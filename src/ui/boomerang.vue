@@ -1,11 +1,8 @@
 <template>
-    <div class="wrapper">
+    <div class="container">
         <navbar></navbar>
-
-        <div class="container">
-            <breadcrumbs></breadcrumbs>
-            <router-view></router-view>
-        </div>
+        <breadcrumbs></breadcrumbs>
+        <router-view></router-view>
     </div>
 </template>
 
