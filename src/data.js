@@ -2,6 +2,9 @@ import axios from 'axios';
 import { getAuthToken } from './auth.js';
 
 
+const PAGE_SIZE = 24;
+
+
 function getData(url) {
     const authToken = getAuthToken();
 
@@ -14,18 +17,25 @@ function getData(url) {
     return axios.get(url, options).then(response => response.data);
 }
 
-function getList(url) {
-    return getData(url).then(data => data.results);
+function getListResults(data) {
+    return {
+        numPages: Math.max(Math.ceil(data.count / PAGE_SIZE), 1),
+        results: data.results
+    };
 }
 
-export function getNotebooks(username) {
-    return getList(`users/${username}/notebooks/?sort=-updated`);
+function getList(url, page) {
+    return getData(`${url}&page=${page}&size=${PAGE_SIZE}`).then(data => getListResults(data));
 }
 
-export function getNotes(username, notebook_id) {
-    return getList(`users/${username}/notebooks/${notebook_id}/notes/?sort=-updated`);
+export function getNotebooks(username, page) {
+    return getList(`users/${username}/notebooks/?sort=-updated`, page);
 }
 
-export function getTasks(username) {
-    return getList(`users/${username}/tasks/?sort=done,-updated`);
+export function getNotes(username, notebook_id, page) {
+    return getList(`users/${username}/notebooks/${notebook_id}/notes/?sort=-updated`, page);
+}
+
+export function getTasks(username, page) {
+    return getList(`users/${username}/tasks/?sort=done,-updated`, page);
 }
