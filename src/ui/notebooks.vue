@@ -8,7 +8,7 @@
 
         <error v-if="error" :error="error"></error>
 
-        <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+        <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ notebook.name }}</h3>
