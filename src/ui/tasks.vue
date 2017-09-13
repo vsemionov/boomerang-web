@@ -3,7 +3,7 @@
         <h1>Tasks</h1>
 
         <a href="#" v-for="task in tasks">
-            <div :class="['panel', task.done ? 'panel-info' : 'panel-warning']">
+            <div class="panel" :class="task.done ? 'panel-info' : 'panel-warning'">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ task.title }}</h3>
                 </div>
