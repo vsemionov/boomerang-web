@@ -4,11 +4,11 @@
 
         <br/>
 
-        <a class="btn btn-social btn-facebook" :href="getSocialLoginUrl('facebook')"><span class="fa fa-facebook"></span> Sign in with Facebook</a>
+        <a class="btn btn-social btn-facebook" :href="getSocialLoginUrl('facebook')"><span class="fa fa-facebook"></span>Log in with Facebook</a>
 
         <p></p>
 
-        <a class="btn btn-social btn-google" :href="getSocialLoginUrl('google')"><span class="fa fa-google"></span> Sign in with Google</a>
+        <a class="btn btn-social btn-google" :href="getSocialLoginUrl('google')"><span class="fa fa-google"></span>Log in with Google</a>
 
         <p></p>
         <br/>
@@ -22,7 +22,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" v-model="password" class="form-control" placeholder="Password" required>
             </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" class="btn btn-primary">Log in</button>
         </form>
 
         <spinner v-if="working"></spinner>
