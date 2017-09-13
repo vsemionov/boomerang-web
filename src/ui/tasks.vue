@@ -4,6 +4,10 @@
 
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
+        <spinner v-if="working"></spinner>
+
+        <error v-if="error" :error="error"></error>
+
         <a href="#" v-for="task in tasks" class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
             <div class="panel" :class="task.done ? 'panel-info' : 'panel-warning'">
                 <div class="panel-heading">
@@ -12,10 +16,6 @@
                 <div class="panel-body">{{ task.description }}</div>
             </div>
         </a>
-
-        <spinner v-if="working"></spinner>
-
-        <error v-if="error" :error="error"></error>
     </div>
 </template>
 
@@ -34,19 +34,19 @@
         data: function () {
             return {
                 page: null,
-                numPages: null,
-                tasks: null,
                 working: false,
-                error: null
+                error: null,
+                numPages: null,
+                tasks: null
             };
         },
 
         methods: {
             load: function () {
                 this.page = parseInt(this.$route.query.page) || 1;
-                this.tasks = null;
                 this.working = true;
                 this.error = null;
+                this.tasks = null;
                 getTasks(this.username, this.page)
                     .then(data => { this.numPages = data.numPages; this.tasks = data.results; })
                     .catch(error => { this.error = error; })

@@ -4,6 +4,10 @@
 
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
+        <spinner v-if="working"></spinner>
+
+        <error v-if="error" :error="error"></error>
+
         <a href="#" v-for="note in notes" class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -12,10 +16,6 @@
                 <div class="panel-body">{{ note.text }}</div>
             </div>
         </a>
-
-        <spinner v-if="working"></spinner>
-
-        <error v-if="error" :error="error"></error>
     </div>
 </template>
 
@@ -34,19 +34,19 @@
         data: function () {
             return {
                 page: null,
-                numPages: null,
-                notes: null,
                 working: false,
-                error: null
+                error: null,
+                numPages: null,
+                notes: null
             };
         },
 
         methods: {
             load: function () {
                 this.page = parseInt(this.$route.query.page) || 1;
-                this.notes = null;
                 this.working = true;
                 this.error = null;
+                this.notes = null;
                 getNotes(this.username, this.notebook_id, this.page)
                     .then(data => { this.numPages = data.numPages; this.notes = data.results; })
                     .catch(error => { this.error = error; })
