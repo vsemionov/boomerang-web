@@ -25,11 +25,13 @@
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
+    import routed from './routed.js';
 
     export default {
         name: 'tasks',
         props: ['username'],
         components: { Pager, Spinner, Error },
+        mixins: [routed],
 
         data: function () {
             return {
@@ -51,16 +53,6 @@
                     .then(data => { this.numPages = data.numPages; this.tasks = data.results; })
                     .catch(error => { this.error = error; })
                     .then(() => this.working = false);
-            }
-        },
-
-        created: function () {
-            this.load();
-        },
-
-        watch: {
-            $route: function (to, from) {
-                this.load();
             }
         }
     };
