@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAuthToken } from './auth.js';
 
 
-export function getNotebooks(username) {
+function getData(url) {
     const authToken = getAuthToken();
 
     const options = {
@@ -11,29 +11,21 @@ export function getNotebooks(username) {
         }
     };
 
-    return axios.get(`users/${username}/notebooks/?sort=-updated`, options).then(response => response.data.results);
+    return axios.get(url, options).then(response => response.data);
+}
+
+function getList(url) {
+    return getData(url).then(data => data.results);
+}
+
+export function getNotebooks(username) {
+    return getList(`users/${username}/notebooks/?sort=-updated`);
 }
 
 export function getNotes(username, notebook_id) {
-    const authToken = getAuthToken();
-
-    const options = {
-        headers: {
-            Authorization: `JWT ${authToken}`
-        }
-    };
-
-    return axios.get(`users/${username}/notebooks/${notebook_id}/notes/?sort=-updated`, options).then(response => response.data.results);
+    return getList(`users/${username}/notebooks/${notebook_id}/notes/?sort=-updated`);
 }
 
 export function getTasks(username) {
-    const authToken = getAuthToken();
-
-    const options = {
-        headers: {
-            Authorization: `JWT ${authToken}`
-        }
-    };
-
-    return axios.get(`users/${username}/tasks/?sort=done,-updated`, options).then(response => response.data.results);
+    return getList(`users/${username}/tasks/?sort=done,-updated`);
 }
