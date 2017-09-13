@@ -40,15 +40,27 @@
             };
         },
 
+        methods: {
+            load: function () {
+                this.page = parseInt(this.$route.query.page) || 1;
+                this.notebooks = null;
+                this.working = true;
+                this.error = null;
+                getNotebooks(this.username, this.page)
+                    .then(data => { this.numPages = data.numPages; this.notebooks = data.results; })
+                    .catch(error => { this.error = error; })
+                    .then(() => this.working = false);
+            }
+        },
+
         created: function () {
-            this.page = parseInt(this.$route.query.page) || 1;
-            this.notebooks = null;
-            this.working = true;
-            this.error = null;
-            getNotebooks(this.username, this.page)
-                .then(data => { this.numPages = data.numPages; this.notebooks = data.results; })
-                .catch(error => { this.error = error; })
-                .then(() => this.working = false);
+            this.load();
+        },
+
+        watch: {
+            $route: function (to, from) {
+                this.load();
+            }
         }
     };
 </script>
