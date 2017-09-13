@@ -2,7 +2,7 @@
     <div>
         <h1>Tasks</h1>
 
-        <a href="#" v-for="task in tasks">
+        <a href="#" v-for="task in tasks" class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
             <div class="panel" :class="task.done ? 'panel-info' : 'panel-warning'">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ task.title }}</h3>
