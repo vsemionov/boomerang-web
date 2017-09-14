@@ -12,12 +12,9 @@
 
 <style>
     .spinner {
-       position: absolute;
-       left: 50%;
-       top: 50%;
+       margin: auto;
        width: 64px;
        height: 64px;
-       margin: auto;
        border: 6px solid rgba(0, 174, 239, .15);
        border-top: 6px solid rgba(0, 174, 239, .8);
        border-radius: 50%;
