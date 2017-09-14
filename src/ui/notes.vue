@@ -53,7 +53,7 @@
         },
 
         methods: {
-            load: function () {
+            load: function (cancelToken) {
                 this.page = parseInt(this.$route.query.page) || 1;
 
                 this.working = true;
@@ -63,22 +63,40 @@
 
                 const requests = [];
 
+                let cancel = false;
+
                 if (!this.notebook) {
                     requests.push(
-                        getNotebook(this.username, this.notebook_id)
+                        getNotebook(this.username, this.notebook_id, cancelToken)
                             .then(notebook => this.notebook = notebook)
-                            .catch(error => this.notebook_error = error)
+                            .catch(error => {
+                                if (axios.isCancel(error)) {
+                                    cancel = true;
+                                } else {
+                                    this.notebook_error = error;
+                                }
+                            })
                     );
                 }
 
                 requests.push(
-                    getNotes(this.username, this.notebook_id, this.page)
+                    getNotes(this.username, this.notebook_id, this.page, cancelToken)
                         .then(data => { this.numPages = data.numPages; this.notes = data.results; })
-                        .catch(error => this.notes_error = error)
+                        .catch(error => {
+                            if (axios.isCancel(error)) {
+                                cancel = true;
+                            } else {
+                                this.notes_error = error;
+                            }
+                        })
                 );
 
                 axios.all(requests)
-                    .then(() => this.working = false);
+                    .then(() => {
+                        if (!cancel) {
+                            this.working = false;
+                        }
+                    });
             }
         }
     };
