@@ -2,10 +2,6 @@
     <div>
         <h1>Tasks</h1>
 
-        <spinner v-if="working"></spinner>
-
-        <error v-if="error" :error="error"></error>
-
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
         <a href="#" v-for="task in tasks" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -16,6 +12,10 @@
                 <div class="panel-body">{{ task.description }}</div>
             </div>
         </a>
+
+        <error v-if="error" :error="error"></error>
+
+        <spinner v-if="working"></spinner>
     </div>
 </template>
 
@@ -54,7 +54,7 @@
 
                 getTasks(this.username, this.page)
                     .then(data => { this.numPages = data.numPages; this.tasks = data.results; })
-                    .catch(error => { this.error = error; })
+                    .catch(error => this.error = error)
                     .then(() => this.working = false);
             }
         }

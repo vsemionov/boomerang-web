@@ -2,11 +2,7 @@
     <div>
         <h1>Notes</h1>
 
-        <spinner v-if="working"></spinner>
-
         <h2 v-if="notebook">{{ notebook.name }}</h2>
-
-        <error v-if="error" :error="error"></error>
 
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
@@ -18,6 +14,10 @@
                 <div class="panel-body">{{ note.text }}</div>
             </div>
         </a>
+
+        <error v-if="error" :error="error"></error>
+
+        <spinner v-if="working"></spinner>
     </div>
 </template>
 
@@ -68,7 +68,7 @@
             loadNotebooks: function () {
                 getNotes(this.username, this.notebook_id, this.page)
                     .then(data => { this.numPages = data.numPages; this.notes = data.results; })
-                    .catch(error => { this.error = error; })
+                    .catch(error => this.error = error)
                     .then(() => this.working = false);
             }
         }

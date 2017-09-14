@@ -2,10 +2,6 @@
     <div>
         <h1>Notebooks</h1>
 
-        <spinner v-if="working"></spinner>
-
-        <error v-if="error" :error="error"></error>
-
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
         <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -15,6 +11,10 @@
                 </div>
             </div>
         </router-link>
+
+        <error v-if="error" :error="error"></error>
+
+        <spinner v-if="working"></spinner>
     </div>
 </template>
 
@@ -53,7 +53,7 @@
 
                 getNotebooks(this.username, this.page)
                     .then(data => { this.numPages = data.numPages; this.notebooks = data.results; })
-                    .catch(error => { this.error = error; })
+                    .catch(error => this.error = error)
                     .then(() => this.working = false);
             }
         }
