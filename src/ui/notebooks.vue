@@ -2,11 +2,11 @@
     <div>
         <h1>Notebooks</h1>
 
-        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
-
         <spinner v-if="working"></spinner>
 
         <error v-if="error" :error="error"></error>
+
+        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
         <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-default">
@@ -45,9 +45,12 @@
         methods: {
             load: function () {
                 this.page = parseInt(this.$route.query.page) || 1;
+
                 this.working = true;
                 this.error = null;
+
                 this.notebooks = null;
+
                 getNotebooks(this.username, this.page)
                     .then(data => { this.numPages = data.numPages; this.notebooks = data.results; })
                     .catch(error => { this.error = error; })

@@ -39,3 +39,7 @@ export function getNotes(username, notebook_id, page) {
 export function getTasks(username, page) {
     return getList(`users/${username}/tasks/?sort=done,-updated`, page);
 }
+
+export function getNotebook(username, notebook_id) {
+    return getData(`users/${username}/notebooks/${notebook_id}/`);
+}

@@ -2,11 +2,11 @@
     <div>
         <h1>Tasks</h1>
 
-        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
-
         <spinner v-if="working"></spinner>
 
         <error v-if="error" :error="error"></error>
+
+        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
         <a href="#" v-for="task in tasks" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel" :class="task.done ? 'panel-info' : 'panel-warning'">
@@ -46,9 +46,12 @@
         methods: {
             load: function () {
                 this.page = parseInt(this.$route.query.page) || 1;
+
                 this.working = true;
                 this.error = null;
+
                 this.tasks = null;
+
                 getTasks(this.username, this.page)
                     .then(data => { this.numPages = data.numPages; this.tasks = data.results; })
                     .catch(error => { this.error = error; })

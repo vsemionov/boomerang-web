@@ -2,11 +2,13 @@
     <div>
         <h1>Notes</h1>
 
-        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
-
         <spinner v-if="working"></spinner>
 
+        <h2 v-if="notebook">{{ notebook.name }}</h2>
+
         <error v-if="error" :error="error"></error>
+
+        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
         <a href="#" v-for="note in notes" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-info">
@@ -21,7 +23,7 @@
 
 
 <script>
-    import { getNotes } from '../data.js';
+    import { getNotebook, getNotes } from '../data.js';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
@@ -38,6 +40,7 @@
                 page: null,
                 working: false,
                 error: null,
+                notebook: null,
                 numPages: null,
                 notes: null
             };
@@ -46,9 +49,23 @@
         methods: {
             load: function () {
                 this.page = parseInt(this.$route.query.page) || 1;
+
                 this.working = true;
                 this.error = null;
+
                 this.notes = null;
+
+                if (!this.notebook) {
+                    getNotebook(this.username, this.notebook_id)
+                        .then(notebook => this.notebook = notebook)
+                        .then(() => this.loadNotebooks())
+                        .catch(error => { this.error = error; this.working = false; });
+                } else {
+                    this.loadNotebooks();
+                }
+            },
+
+            loadNotebooks: function () {
                 getNotes(this.username, this.notebook_id, this.page)
                     .then(data => { this.numPages = data.numPages; this.notes = data.results; })
                     .catch(error => { this.error = error; })
