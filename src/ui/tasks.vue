@@ -21,8 +21,6 @@
 
 
 <script>
-    import axios from 'axios';
-
     import { getTasks } from '../data.js';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
@@ -59,7 +57,7 @@
                 getTasks(this.username, this.page, cancelToken)
                     .then(data => { this.numPages = data.numPages; this.tasks = data.results; })
                     .catch(error => {
-                        if (axios.isCancel(error)) {
+                        if (this.axios.isCancel(error)) {
                             cancel = true;
                         } else {
                             this.error = error;

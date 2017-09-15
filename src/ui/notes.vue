@@ -27,8 +27,6 @@
 
 
 <script>
-    import axios from 'axios';
-
     import { getNotebook, getNotes } from '../data.js';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
@@ -71,7 +69,7 @@
                         getNotebook(this.username, this.notebook_id, cancelToken)
                             .then(notebook => this.notebook = notebook)
                             .catch(error => {
-                                if (axios.isCancel(error)) {
+                                if (this.axios.isCancel(error)) {
                                     cancel = true;
                                 } else {
                                     this.notebook_error = error;
@@ -84,7 +82,7 @@
                     getNotes(this.username, this.notebook_id, this.page, cancelToken)
                         .then(data => { this.numPages = data.numPages; this.notes = data.results; })
                         .catch(error => {
-                            if (axios.isCancel(error)) {
+                            if (this.axios.isCancel(error)) {
                                 cancel = true;
                             } else {
                                 this.notes_error = error;
@@ -92,7 +90,7 @@
                         })
                 );
 
-                axios.all(requests)
+                this.axios.all(requests)
                     .then(() => {
                         if (!cancel) {
                             this.working = false;

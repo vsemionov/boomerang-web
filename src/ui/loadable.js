@@ -1,6 +1,3 @@
-import axios from 'axios';
-
-
 function truncated(text, length) {
     const terminator = '...';
     if (text.length > length) {
@@ -18,14 +15,14 @@ export default {
     },
 
     created: function () {
-        this.cancelSource = axios.CancelToken.source();
+        this.cancelSource = this.axios.CancelToken.source();
         this.load(this.cancelSource.token);
     },
 
     watch: {
         $route: function (to, from) {
             this.cancelSource.cancel();
-            this.cancelSource = axios.CancelToken.source();
+            this.cancelSource = this.axios.CancelToken.source();
             this.load(this.cancelSource.token);
         }
     },

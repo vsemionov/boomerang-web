@@ -16,8 +16,6 @@
 
 
 <script>
-    import axios from 'axios';
-
     import { version } from '../../package.json';
     import { getInfo } from '../data.js';
     import Spinner from './spinner.vue';
@@ -50,7 +48,7 @@
                 getInfo(cancelToken)
                     .then(info => this.info = info )
                     .catch(error => {
-                        if (axios.isCancel(error)) {
+                        if (this.axios.isCancel(error)) {
                             cancel = true;
                         } else {
                             this.error = error;

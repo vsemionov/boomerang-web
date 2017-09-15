@@ -1,9 +1,8 @@
 import Vue from 'vue';
-
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
-
 import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 import { version } from '../package.json';
 import { API_URL } from './urls.js';
@@ -20,8 +19,10 @@ Raven
     .install();
 
 
-axios.defaults.baseURL = API_URL;
-axios.defaults.timeout = 30000;
+Vue.use(VueAxios, axios);
+
+Vue.axios.defaults.baseURL = API_URL;
+Vue.axios.defaults.timeout = 30000;
 
 
 const app = new Vue({

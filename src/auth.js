@@ -1,5 +1,5 @@
-import decode from 'jwt-decode';
 import axios from 'axios';
+import decode from 'jwt-decode';
 
 
 const JWT_KEY = 'jwt';
