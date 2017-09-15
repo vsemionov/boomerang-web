@@ -7,6 +7,8 @@ Thumbs.db
 
 /node_modules
 
-/www/boomerang
+/www
+!/www/index.html
+!/www/favicon.ico
 
 /npm-debug.log
