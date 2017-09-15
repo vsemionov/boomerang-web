@@ -9,6 +9,7 @@ import Callback from './ui/account/callback.vue'
 import Notebooks from './ui/notebooks.vue'
 import Notes from './ui/notes.vue'
 import Tasks from './ui/tasks.vue'
+import Info from './ui/info.vue'
 import NotFound from './ui/not-found.vue'
 
 
@@ -55,6 +56,11 @@ const routes = [
         props: true
     },
     {
+        path: '/info',
+        name: 'info',
+        component: Info
+    },
+    {
         path: '*',
         component: NotFound
     }
@@ -80,6 +86,10 @@ export const routeBreadcrumbs = {
     tasks: [
         { name: 'Home', location: { name: 'index' } },
         'Tasks'
+    ],
+    info: [
+        { name: 'Home', location: { name: 'index' } },
+        'Info'
     ]
 };
 

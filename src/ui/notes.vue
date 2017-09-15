@@ -28,17 +28,18 @@
 
 <script>
     import axios from 'axios';
+
     import { getNotebook, getNotes } from '../data.js';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
-    import list from './list.js';
+    import loadable from './loadable.js';
 
     export default {
         name: 'notes',
         props: ['username', 'notebook_id'],
         components: { Pager, Spinner, Error },
-        mixins: [list],
+        mixins: [loadable],
 
         data: function () {
             return {

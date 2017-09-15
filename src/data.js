@@ -30,6 +30,10 @@ function getList(url, page, cancelToken) {
         .then(data => getListResults(data));
 }
 
+export function getInfo(cancelToken) {
+    return getData(`info/`, cancelToken);
+}
+
 export function getNotebooks(username, page, cancelToken) {
     return getList(`users/${username}/notebooks/?sort=-updated`, page, cancelToken);
 }

@@ -1,14 +1,12 @@
 <template>
     <div>
-        <h1>Notebooks</h1>
+        <h1>Info</h1>
 
-        <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
-
-        <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="panel panel-default">
-                <div class="panel-body">{{ notebook.name | title }}</div>
-            </div>
-        </router-link>
+        <template v-if="info">
+            <br/>
+            <h4>App version: {{ version }}</h4>
+            <h4>API version: {{ info.app.version }}</h4>
+        </template>
 
         <error v-if="error" :error="error"></error>
 
@@ -20,41 +18,37 @@
 <script>
     import axios from 'axios';
 
-    import { getNotebooks } from '../data.js';
-    import Pager from './pager.vue';
+    import { version } from '../../package.json';
+    import { getInfo } from '../data.js';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
     import loadable from './loadable.js';
 
     export default {
-        name: 'notebooks',
-        props: ['username'],
-        components: { Pager, Spinner, Error },
+        name: 'info',
+        components: { Spinner, Error },
         mixins: [loadable],
 
         data: function () {
             return {
-                page: null,
                 working: false,
                 error: null,
-                numPages: null,
-                notebooks: null
+                version: version,
+                info: null
             };
         },
 
         methods: {
             load: function (cancelToken) {
-                this.page = parseInt(this.$route.query.page) || 1;
-
                 this.working = true;
                 this.error = null;
 
-                this.notebooks = null;
+                this.info = null;
 
                 let cancel = false;
 
-                getNotebooks(this.username, this.page, cancelToken)
-                    .then(data => { this.numPages = data.numPages; this.notebooks = data.results; })
+                getInfo(cancelToken)
+                    .then(info => this.info = info )
                     .catch(error => {
                         if (axios.isCancel(error)) {
                             cancel = true;
