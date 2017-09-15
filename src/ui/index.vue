@@ -4,9 +4,13 @@
 
         <template v-if="authState.username">
             <br/>
-            <router-link :to="{ name: 'notebooks', params: { username: authState.username } }" class="btn btn-primary btn-lg" role="button">Notebooks</router-link>
+            <div class="row">
+                <router-link :to="{ name: 'notebooks', params: { username: authState.username } }" class="btn btn-primary btn-lg col-xs-12 col-sm-6 col-md-4 col-lg-3" role="button">Notebooks</router-link>
+            </div>
             <p></p>
-            <router-link :to="{ name: 'tasks', params: { username: authState.username } }" class="btn btn-primary btn-lg" role="button">Tasks</router-link>
+            <div class="row">
+                <router-link :to="{ name: 'tasks', params: { username: authState.username } }" class="btn btn-primary btn-lg col-xs-12 col-sm-6 col-md-4 col-lg-3" role="button">Tasks</router-link>
+            </div>
         </template>
     </div>
 </template>
