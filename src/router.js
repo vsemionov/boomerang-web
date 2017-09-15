@@ -9,7 +9,7 @@ import Callback from './ui/account/callback.vue'
 import Notebooks from './ui/notebooks.vue'
 import Notes from './ui/notes.vue'
 import Tasks from './ui/tasks.vue'
-import Info from './ui/info.vue'
+import About from './ui/about.vue'
 import NotFound from './ui/not-found.vue'
 
 
@@ -56,9 +56,9 @@ const routes = [
         props: true
     },
     {
-        path: '/info',
-        name: 'info',
-        component: Info
+        path: '/about',
+        name: 'about',
+        component: About
     },
     {
         path: '*',
@@ -87,9 +87,9 @@ export const routeBreadcrumbs = {
         { name: 'Home', location: { name: 'index' } },
         'Tasks'
     ],
-    info: [
+    about: [
         { name: 'Home', location: { name: 'index' } },
-        'Info'
+        'About'
     ]
 };
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Info</h1>
+        <h1>About</h1>
 
         <template v-if="info">
             <br/>
@@ -25,7 +25,7 @@
     import loadable from './loadable.js';
 
     export default {
-        name: 'info',
+        name: 'about',
         components: { Spinner, Error },
         mixins: [loadable],
 
