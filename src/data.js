@@ -5,15 +5,21 @@ import { getAuthToken } from './auth.js';
 const PAGE_SIZE = 24;
 
 
-function getData(url, cancelToken) {
-    const authToken = getAuthToken();
+function getData(url, cancelToken, auth=true) {
+    const options = {};
 
-    const options = {
-        headers: {
-            Authorization: `JWT ${authToken}`,
-        },
-        cancelToken
-    };
+    if (cancelToken) {
+        options.cancelToken = cancelToken;
+    }
+
+    if (auth) {
+        const authToken = getAuthToken();
+        if (authToken) {
+            options.headers = {
+                Authorization: `JWT ${authToken}`
+            }
+        }
+    }
 
     return axios.get(url, options).then(response => response.data);
 }
@@ -31,7 +37,7 @@ function getList(url, page, cancelToken) {
 }
 
 export function getInfo(cancelToken) {
-    return getData(`info/`, cancelToken);
+    return getData(`info/`, cancelToken, false);
 }
 
 export function getNotebooks(username, page, cancelToken) {
