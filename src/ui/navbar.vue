@@ -12,7 +12,7 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <router-link tag="li" :to="{ name: 'about' }" active-class="active"><a><span class="glyphicon glyphicon-question-sign"></span>&nbsp;About</a></router-link>
+                    <router-link tag="li" :to="{ name: 'about' }" active-class="active"><a>About</a></router-link>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
