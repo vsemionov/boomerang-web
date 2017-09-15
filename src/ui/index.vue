@@ -7,8 +7,6 @@
             <router-link :to="{ name: 'notebooks', params: { username: authState.username } }" class="btn btn-primary btn-lg" role="button">Notebooks</router-link>
             <p></p>
             <router-link :to="{ name: 'tasks', params: { username: authState.username } }" class="btn btn-primary btn-lg" role="button">Tasks</router-link>
-            <p></p>
-            <router-link :to="{ name: 'about' }" class="btn btn-primary btn-lg" role="button">About</router-link>
         </template>
     </div>
 </template>

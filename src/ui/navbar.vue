@@ -11,6 +11,10 @@
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <router-link tag="li" :to="{ name: 'about' }" active-class="active"><a><span class="glyphicon glyphicon-question-sign"></span>&nbsp;About</a></router-link>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <template v-if="!authState.username">
                         <router-link tag="li" :to="{ name: 'login' }" active-class="active"><a><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log In</a></router-link>
