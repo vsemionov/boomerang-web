@@ -6,7 +6,7 @@
 
         <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-default">
-                <div class="panel-body">{{ notebook.name }}</div>
+                <div class="panel-body">{{ notebook.name | title }}</div>
             </div>
         </router-link>
 
@@ -23,13 +23,13 @@
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
-    import routed from './routed.js';
+    import list from './list.js';
 
     export default {
         name: 'notebooks',
         props: ['username'],
         components: { Pager, Spinner, Error },
-        mixins: [routed],
+        mixins: [list],
 
         data: function () {
             return {

@@ -10,9 +10,9 @@
             <a href="#" v-for="note in notes" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ note.title }}</h3>
+                        <h3 class="panel-title">{{ note.title | title }}</h3>
                     </div>
-                    <div class="panel-body">{{ note.text }}</div>
+                    <div class="panel-body">{{ note.text | body }}</div>
                 </div>
             </a>
 
@@ -32,13 +32,13 @@
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
-    import routed from './routed.js';
+    import list from './list.js';
 
     export default {
         name: 'notes',
         props: ['username', 'notebook_id'],
         components: { Pager, Spinner, Error },
-        mixins: [routed],
+        mixins: [list],
 
         data: function () {
             return {

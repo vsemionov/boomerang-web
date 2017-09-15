@@ -1,6 +1,15 @@
 import axios from 'axios';
 
 
+function truncated(text, length) {
+    const terminator = '...';
+    if (text.length > length) {
+        return text.substring(0, length - terminator.length) + terminator;
+    }
+    return text;
+}
+
+
 export default {
     data: function () {
         return {
@@ -24,5 +33,15 @@ export default {
     beforeRouteLeave: function (to, from, next) {
         this.cancelSource.cancel();
         next();
+    },
+
+    filters: {
+        title: function (text) {
+            return truncated(text, 32);
+        },
+
+        body: function (text) {
+            return truncated(text, 128);
+        }
     }
 };

@@ -7,9 +7,9 @@
         <a href="#" v-for="task in tasks" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel" :class="task.done ? 'panel-info' : 'panel-warning'">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ task.title }}</h3>
+                    <h3 class="panel-title">{{ task.title | title }}</h3>
                 </div>
-                <div class="panel-body">{{ task.description }}</div>
+                <div class="panel-body">{{ task.description | body }}</div>
             </div>
         </a>
 
@@ -26,13 +26,13 @@
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
-    import routed from './routed.js';
+    import list from './list.js';
 
     export default {
         name: 'tasks',
         props: ['username'],
         components: { Pager, Spinner, Error },
-        mixins: [routed],
+        mixins: [list],
 
         data: function () {
             return {
