@@ -16,10 +16,3 @@
         components: { Navbar, Breadcrumbs }
     };
 </script>
-
-
-<style>
-    body {
-        padding-top: 1em;
-    }
-</style>

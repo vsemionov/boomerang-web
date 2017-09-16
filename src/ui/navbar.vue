@@ -1,39 +1,34 @@
 <template>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <router-link :to="{ name: 'index' }" class="navbar-brand" @click.native="$event.target.blur()">Boomerang</router-link>
-            </div>
+    <b-navbar toggleable="md" type="light" variant="light" class="mt-2">
 
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <router-link tag="li" :to="{ name: 'about' }" active-class="active"><a>About</a></router-link>
-                </ul>
+        <b-navbar-brand :to="{ name: 'index' }">Boomerang</b-navbar-brand>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <template v-if="!authState.username">
-                        <router-link tag="li" :to="{ name: 'login' }" active-class="active"><a><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log In</a></router-link>
-                        <li><a :href="apiAccountsBaseUrl + 'signup/'" target="_blank"><span class="glyphicon glyphicon-check"></span>&nbsp;Sign Up</a></li>
-                    </template>
+        <b-nav-toggle target="collapse"></b-nav-toggle>
 
-                    <template v-else>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;{{ authState.username }}<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a :href="apiAccountsBaseUrl + 'email/'" target="_blank"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a></li>
-                                <li><router-link :to="{ name: 'logout' }"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log Out</router-link></li>
-                            </ul>
-                        </li>
-                    </template>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <b-collapse is-nav id="collapse">
+
+            <b-nav is-nav-bar>
+                <b-nav-item :to="{ name: 'about' }">About</b-nav-item>
+            </b-nav>
+
+            <b-nav is-nav-bar class="ml-auto">
+
+                <template v-if="!authState.username">
+                    <b-nav-item :to="{ name: 'login' }"><span class="fa fa-sign-in"></span>&nbsp;Log In</b-nav-item>
+                    <b-nav-item :href="apiAccountsBaseUrl + 'signup/'" target="_blank"><span class="fa fa-check-square-o"></span>&nbsp;Sign Up</b-nav-item>
+                </template>
+
+                <template v-else>
+                    <b-nav-item-dropdown :text="authState.username" right>
+                        <b-dropdown-item :href="apiAccountsBaseUrl + 'email/'" target="_blank"><span class="fa fa-cog"></span>&nbsp;Settings</b-dropdown-item>
+                        <b-dropdown-item :to="{ name: 'logout' }"><span class="fa fa-sign-out"></span>&nbsp;Log Out</b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </template>
+
+            </b-nav>
+
+        </b-collapse>
+    </b-navbar>
 </template>
 
 
