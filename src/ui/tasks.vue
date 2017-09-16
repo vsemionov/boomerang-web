@@ -7,7 +7,7 @@
         <b-row>
             <b-col v-for="task in tasks" :key="task.id" cols="12" sm="12" md="12" lg="6" xl="4">
                 <a href="#">
-                    <b-card :title="task.title | title" class="mb-3">
+                    <b-card :title="task.title | title" :bg-variant="task.done ? 'success' : 'danger'" text-variant="white" class="mb-3">
                         <p class="card-text">{{ task.description | body }}</p>
                     </b-card>
                 </a>

@@ -10,7 +10,7 @@
             <b-row>
                 <b-col v-for="note in notes" :key="note.id" cols="12" sm="12" md="12" lg="6" xl="4">
                     <a href="#">
-                        <b-card :title="note.title | title" class="mb-3">
+                        <b-card :title="note.title | title" bg-variant="warning" text-variant="white" class="mb-3">
                             <p class="card-text">{{ note.text | body }}</p>
                         </b-card>
                     </a>
