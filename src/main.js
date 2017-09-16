@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
+import BootstrapVue from 'bootstrap-vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
@@ -18,6 +19,8 @@ Raven
     .addPlugin(RavenVue, Vue)
     .install();
 
+
+Vue.use(BootstrapVue);
 
 Vue.use(VueAxios, axios);
 

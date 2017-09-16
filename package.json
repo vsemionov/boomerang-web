@@ -11,9 +11,8 @@
     "build:autoprefixer": "postcss --use autoprefixer -o www/boomerang.css www/boomerang.css",
     "build:cssnano": "cssnano www/boomerang.css www/boomerang.css",
     "build:bootstrap": "cpx node_modules/bootstrap/dist/** www/bootstrap",
-    "build:jquery": "cpx node_modules/jquery/dist/** www/jquery",
-    "build:popper": "cpx node_modules/popper.js/dist/umd/** www/popper.js",
-    "build:bootstrap-social": "cpx node_modules/bootstrap-social/bootstrap-social.css www/bootstrap-social/css",
+    "build:bootstrap-vue": "cpx node_modules/bootstrap-vue/dist/bootstrap-vue.css www/bootstrap-vue",
+    "build:bootstrap-social": "cpx node_modules/bootstrap-social/bootstrap-social.css www/bootstrap-social",
     "build:font-awesome": "cpx node_modules/font-awesome/{css,fonts}/** www/font-awesome",
 
     "start": "cross-env NODE_ENV=development rollup -cw",
@@ -27,8 +26,8 @@
     "raven-js": "3.17.0",
 
     "bootstrap": "4.0.0-beta",
-    "jquery": "3.2.1",
-    "popper.js": "1.12.5",
+    "bootstrap-vue": "1.0.0-beta.7",
+
     "bootstrap-social": "5.1.1",
     "font-awesome": "4.7.0",
 

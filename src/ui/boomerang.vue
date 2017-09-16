@@ -1,9 +1,9 @@
 <template>
-    <div class="container">
+    <b-container>
         <navbar></navbar>
         <breadcrumbs></breadcrumbs>
         <router-view></router-view>
-    </div>
+    </b-container>
 </template>
 
 
