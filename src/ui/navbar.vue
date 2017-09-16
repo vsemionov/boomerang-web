@@ -19,7 +19,7 @@
                 </template>
 
                 <template v-else>
-                    <b-nav-item-dropdown :text="authState.username" right>
+                    <b-nav-item-dropdown :text="'<span class=\'fa fa-user\'></span>&nbsp;' + authState.username" right>
                         <b-dropdown-item :href="apiAccountsBaseUrl + 'email/'" target="_blank"><span class="fa fa-cog"></span>&nbsp;Settings</b-dropdown-item>
                         <b-dropdown-item :to="{ name: 'logout' }"><span class="fa fa-sign-out"></span>&nbsp;Log Out</b-dropdown-item>
                     </b-nav-item-dropdown>
