@@ -66,29 +66,29 @@ const routes = [
     }
 ];
 
-export const routeBreadcrumbs = {
+export const breadcrumbs = {
     index: [
         'Home'
     ],
     login: [
-        { name: 'Home', location: { name: 'index' } },
+        { text: 'Home', to: { name: 'index' } },
         'Log In'
     ],
     notebooks: [
-        { name: 'Home', location: { name: 'index' } },
+        { text: 'Home', to: { name: 'index' } },
         'Notebooks'
     ],
     notes: [
-        { name: 'Home', location: { name: 'index' } },
-        { name: 'Notebooks', location: { name: 'notebooks', params: ['username'] } },
+        { text: 'Home', to: { name: 'index' } },
+        { text: 'Notebooks', to: { name: 'notebooks', params: ['username'] } },
         'Notes'
     ],
     tasks: [
-        { name: 'Home', location: { name: 'index' } },
+        { text: 'Home', to: { name: 'index' } },
         'Tasks'
     ],
     about: [
-        { name: 'Home', location: { name: 'index' } },
+        { text: 'Home', to: { name: 'index' } },
         'About'
     ]
 };
