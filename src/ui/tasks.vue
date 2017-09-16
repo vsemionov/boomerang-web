@@ -4,14 +4,15 @@
 
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
-        <a href="#" v-for="task in tasks" :key="task.id" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="panel" :class="task.done ? 'panel-info' : 'panel-warning'">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ task.title | title }}</h3>
-                </div>
-                <div class="panel-body">{{ task.description | body }}</div>
-            </div>
-        </a>
+        <b-row>
+            <b-col v-for="task in tasks" :key="task.id" cols="12" sm="12" md="12" lg="6" xl="4">
+                <a href="#">
+                    <b-card :title="task.title | title" class="mb-3">
+                        <p class="card-text">{{ task.description | body }}</p>
+                    </b-card>
+                </a>
+            </b-col>
+        </b-row>
 
         <error v-if="error" :error="error"></error>
 

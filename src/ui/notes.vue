@@ -7,14 +7,15 @@
 
             <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
-            <a href="#" v-for="note in notes" :key="note.id" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{ note.title | title }}</h3>
-                    </div>
-                    <div class="panel-body">{{ note.text | body }}</div>
-                </div>
-            </a>
+            <b-row>
+                <b-col v-for="note in notes" :key="note.id" cols="12" sm="12" md="12" lg="6" xl="4">
+                    <a href="#">
+                        <b-card :title="note.title | title" class="mb-3">
+                            <p class="card-text">{{ note.text | body }}</p>
+                        </b-card>
+                    </a>
+                </b-col>
+            </b-row>
 
             <error v-if="notes_error" :error="notes_error"></error>
         </template>

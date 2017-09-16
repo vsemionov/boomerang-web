@@ -4,11 +4,14 @@
 
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
-        <router-link v-for="notebook in notebooks" :key="notebook.id" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="panel panel-default">
-                <div class="panel-body">{{ notebook.name | title }}</div>
-            </div>
-        </router-link>
+        <b-row>
+            <b-col v-for="notebook in notebooks" :key="notebook.id" cols="12" sm="12" md="12" lg="6" xl="4">
+                <router-link :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }">
+                    <b-card :title="notebook.name | title" class="mb-3">
+                    </b-card>
+                </router-link>
+            </b-col>
+        </b-row>
 
         <error v-if="error" :error="error"></error>
 
