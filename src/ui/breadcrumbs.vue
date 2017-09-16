@@ -23,13 +23,10 @@
                 const breadcrumbs = routeBreadcrumbs[this.$route.name];
                 const linkedBreadcrumbs = breadcrumbs.slice(0, -1);
 
-                for (let bc in linkedBreadcrumbs) {
-                    const breadcrumb = linkedBreadcrumbs[bc];
-
+                for (let breadcrumb of linkedBreadcrumbs) {
                     const linkedRoute = { name: breadcrumb.name, location: { name: breadcrumb.location.name, params: {} } };
 
-                    for (let p in breadcrumb.location.params) {
-                        const param = breadcrumb.location.params[p];
+                    for (let param of breadcrumb.location.params) {
                         linkedRoute.location.params[param] = this.$route.params[param];
                     }
 
