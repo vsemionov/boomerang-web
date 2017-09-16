@@ -10,14 +10,15 @@
 
                 <b-button block class="btn-social btn-google" :href="getSocialLoginUrl('google')"><span class="fa fa-google"></span>Log in with Google</b-button>
 
-                <br/>
+                <p></p>
+                <p>or</p>
 
                 <b-form @submit.prevent="authenticate">
-                    <b-form-group label="Username or email" label-for="username">
+                    <b-form-group>
                         <b-form-input type="text" id="username" ref="username" v-model="username" placeholder="Username or email" required autofocus></b-form-input>
                     </b-form-group>
 
-                    <b-form-group label="Password" label-for="password">
+                    <b-form-group>
                         <b-form-input type="password" id="password" v-model="password" placeholder="Password" required></b-form-input>
                     </b-form-group>
 
