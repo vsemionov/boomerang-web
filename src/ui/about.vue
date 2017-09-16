@@ -4,8 +4,8 @@
 
         <template v-if="info">
             <br/>
-            <h4>App version: {{ version }}</h4>
-            <h4>API version: {{ info.app.version }}</h4>
+            <p>App version: {{ version }}</p>
+            <p>API version: {{ info.app.version }}</p>
         </template>
 
         <error v-if="error" :error="error"></error>
