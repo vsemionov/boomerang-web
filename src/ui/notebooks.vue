@@ -4,7 +4,7 @@
 
         <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
-        <router-link v-for="notebook in notebooks" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <router-link v-for="notebook in notebooks" :key="notebook.id" :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="panel panel-default">
                 <div class="panel-body">{{ notebook.name | title }}</div>
             </div>

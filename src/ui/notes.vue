@@ -7,7 +7,7 @@
 
             <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
-            <a href="#" v-for="note in notes" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="#" v-for="note in notes" :key="note.id" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ note.title | title }}</h3>

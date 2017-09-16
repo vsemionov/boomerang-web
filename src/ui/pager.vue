@@ -5,7 +5,7 @@
                 <router-link :to="{ name: $route.name, params: $route.params, query: { page: 1 } }">&laquo;</router-link>
             </li>
 
-            <li v-for="page in numPages" :class="{ active: currentPage == page }">
+            <li v-for="page in numPages" :key="page" :class="{ active: currentPage == page }">
                 <router-link :to="{ name: $route.name, params: $route.params, query: { page: page } }">{{ page }}</router-link>
             </li>
 

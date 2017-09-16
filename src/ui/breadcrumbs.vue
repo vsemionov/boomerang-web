@@ -1,6 +1,6 @@
 <template>
     <ol class="breadcrumb" v-if="hasRoutes()">
-        <li v-for="route in getLinkedRoutes()"><router-link :to="route.location">{{ route.name }}</router-link></li>
+        <li v-for="route in getLinkedRoutes()" :key="route.name"><router-link :to="route.location">{{ route.name }}</router-link></li>
         <li class="active">{{ getActiveRoute() }}</li>
     </ol>
 </template>
