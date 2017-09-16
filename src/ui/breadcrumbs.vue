@@ -1,5 +1,5 @@
 <template>
-    <b-breadcrumb v-if="getBreadcrumbs()" :items="getBreadcrumbs()"></b-breadcrumb>
+    <b-breadcrumb v-if="getBreadcrumbs()" :items="getBreadcrumbs()" class="mt-2"></b-breadcrumb>
 </template>
 
 
