@@ -1,9 +1,17 @@
 import Vue from 'vue';
+
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
-import BootstrapVue from 'bootstrap-vue';
+
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+
+import BootstrapVue from 'bootstrap-vue';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'font-awesome/css/font-awesome.css';
+import 'bootstrap-social/bootstrap-social.css';
 
 import { version } from '../package.json';
 import { API_URL } from './urls.js';
@@ -20,12 +28,12 @@ Raven
     .install();
 
 
-Vue.use(BootstrapVue);
+axios.defaults.baseURL = API_URL;
+axios.defaults.timeout = 30000;
 
 Vue.use(VueAxios, axios);
 
-Vue.axios.defaults.baseURL = API_URL;
-Vue.axios.defaults.timeout = 30000;
+Vue.use(BootstrapVue);
 
 
 const app = new Vue({
