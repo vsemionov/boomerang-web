@@ -6,9 +6,9 @@
 
         <b-row align-h="center">
             <b-col cols="10" sm="10" md="8" lg="6" xl="5">
-                <b-button block class="btn-social btn-facebook" :href="getSocialLoginUrl('facebook')"><span class="fa fa-facebook"></span>Log in with Facebook</b-button>
+                <b-button block class="btn-social btn-facebook" :href="getSocialLoginUrl('facebook')"><span class="fa fa-facebook" style="width: 40px; line-height: 45px;"></span>Log in with Facebook</b-button>
 
-                <b-button block class="btn-social btn-google" :href="getSocialLoginUrl('google')"><span class="fa fa-google"></span>Log in with Google</b-button>
+                <b-button block class="btn-social btn-google" :href="getSocialLoginUrl('google')"><span class="fa fa-google" style="width: 40px; line-height: 45px;"></span>Log in with Google</b-button>
 
                 <p></p>
                 <p>or</p>
