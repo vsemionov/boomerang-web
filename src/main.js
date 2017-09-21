@@ -17,6 +17,7 @@ import { version } from '../package.json';
 import { API_URL } from './urls.js';
 import { router } from './router.js';
 import Boomerang from './ui/boomerang.vue';
+import './ui/boomerang.css';
 
 
 Raven

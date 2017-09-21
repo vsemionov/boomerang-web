@@ -9,7 +9,7 @@
 
             <b-row class="mt-4">
                 <b-col v-for="note in notes" :key="note.id" cols="12" sm="12" md="12" lg="6" xl="4">
-                    <a href="#">
+                    <a href="#" class="item-link">
                         <b-card :title="note.title | title" bg-variant="warning" text-variant="white" class="mb-3">
                             <p class="card-text">{{ note.text | body }}</p>
                         </b-card>

@@ -6,7 +6,7 @@
 
         <b-row class="mt-4">
             <b-col v-for="notebook in notebooks" :key="notebook.id" cols="12" sm="12" md="12" lg="6" xl="4">
-                <router-link :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }">
+                <router-link :to="{ name: 'notes', params: {username, notebook_id: notebook.id} }" class="item-link">
                     <b-card :title="notebook.name | title" bg-variant="secondary" text-variant="white" class="mb-3">
                     </b-card>
                 </router-link>

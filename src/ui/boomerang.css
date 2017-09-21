@@ -1,0 +1,8 @@
+.item-link:first-child {
+    color: unset;
+    text-decoration: none;
+}
+
+.card:hover {
+    box-shadow: 0 0 1rem #888;
+}
