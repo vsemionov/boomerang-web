@@ -3,7 +3,22 @@
         <h1>Notes</h1>
 
         <template v-if="notebook">
-            <h2 v-if="numPages || notes_error">{{ notebook.name }}</h2>
+
+            <template v-if="numPages || notes_error">
+                <template v-if="!editing">
+                    <b-button variant="outline-secondary" class="pull-right" @click="edit"><span class="fa fa-pencil"></span></b-button>
+                    <h2>{{ notebook.name }}</h2>
+                </template>
+
+                <template v-else>
+                    <b-input-group>
+                        <b-form-input type="text" v-model.trim="notebook.name" :state="inputState"></b-form-input>
+                        <b-form-feedback>Enter at most 128 characters</b-form-feedback>
+                        <b-input-group-button><b-button variant="primary">Save</b-button></b-input-group-button>
+                        <b-input-group-button><b-button variant="secondary">Cancel</b-button></b-input-group-button>
+                    </b-input-group>
+                </template>
+            </template>
 
             <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
 
@@ -48,10 +63,17 @@
                 notes_error: null,
                 notebook: null,
                 numPages: null,
-                notes: null
+                notes: null,
+                editing: false
             };
         },
 
+        computed: {
+            inputState: function () {
+                return this.notebook.name.length <= 128 ? null : false;
+            }
+        },
+        
         methods: {
             load: function (cancelToken) {
                 this.page = parseInt(this.$route.query.page) || 1;
@@ -97,6 +119,10 @@
                             this.working = false;
                         }
                     });
+            },
+
+            edit: function () {
+                this.editing = true;
             }
         }
     };
