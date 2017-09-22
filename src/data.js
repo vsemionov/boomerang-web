@@ -6,23 +6,32 @@ import { getAuthToken } from './auth.js';
 const PAGE_SIZE = 24;
 
 
-function getData(url, cancelToken, auth=true) {
-    const options = {};
+function request(url, method, data, cancelToken, auth=true) {
+    const config = {
+        url: url,
+        method: method,
+        data: data
+    };
 
     if (cancelToken) {
-        options.cancelToken = cancelToken;
+        config.cancelToken = cancelToken;
     }
 
     if (auth) {
         const authToken = getAuthToken();
         if (authToken) {
-            options.headers = {
+            config.headers = {
                 Authorization: `JWT ${authToken}`
-            }
+            };
         }
     }
 
-    return axios.get(url, options).then(response => response.data);
+    return axios.request(config)
+        .then(response => response.data);
+}
+
+function getData(url, cancelToken, auth=true) {
+    return request(url, 'get', null, cancelToken, auth);
 }
 
 function getListResults(data) {
@@ -32,8 +41,10 @@ function getListResults(data) {
     };
 }
 
-function getList(url, page, cancelToken) {
-    return getData(`${url}&page=${page}&size=${PAGE_SIZE}`, cancelToken)
+function getList(baseUrl, page, cancelToken) {
+    const url = `${baseUrl}&page=${page}&size=${PAGE_SIZE}`;
+
+    return getData(url, cancelToken)
         .then(data => getListResults(data));
 }
 
@@ -55,4 +66,22 @@ export function getTasks(username, page, cancelToken) {
 
 export function getNotebook(username, notebook_id, cancelToken) {
     return getData(`users/${username}/notebooks/${notebook_id}/`, cancelToken);
+}
+
+function modifyObject(baseUrl, method, updated, data, cancelToken, auth=true) {
+    const url = `${baseUrl}&at=${updated}`;
+
+    return request(url, method, data, cancelToken, auth);
+}
+
+function patchObject(url, updated, data, cancelToken, auth=true) {
+    return modifyObject(url, 'patch', updated, data, cancelToken, auth);
+}
+
+export function renameNotebook(notebook, name, cancelToken) {
+    const data = {
+        name: name
+    };
+
+    return patchObject(`users/${notebook.user}/notebooks/${notebook.id}/`, notebook.updated, data, cancelToken);
 }

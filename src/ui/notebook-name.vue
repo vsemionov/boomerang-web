@@ -27,7 +27,7 @@
             Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?
         </b-modal>
 
-        <b-modal ref="errorModal" title="Error" ok-only ok-title="Close" v-model="error">
+        <b-modal ref="errorModal" title="Error" ok-only ok-title="Close" :visible="!!error">
             <error :error="error"></error>
         </b-modal>
     </div>
@@ -35,7 +35,7 @@
 
 
 <script>
-    import axios from 'axios'; //////////////////
+    import { renameNotebook } from '../data.js';
     import Error from './error.vue';
 
     export default {
@@ -77,8 +77,11 @@
                 if (valid == null || valid == true || valid == 'valid') {
                     this.editing = false;
                     this.working = true;
-                    this.notebook.name = this.value;
-                    axios.get('test/').catch((error) => this.error = error).then(() => this.working = false); /////////
+
+                    renameNotebook(this.notebook, this.value)
+                        .then(notebook => this.notebook.name = notebook.name)
+                        .catch(error => this.error = error)
+                        .then(() => this.working = false);
                 }
             }
         }
