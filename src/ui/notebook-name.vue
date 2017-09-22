@@ -1,6 +1,7 @@
 <template>
     <div>
         <template v-if="!editing">
+            <b-button variant="outline-secondary" class="pull-right" @click="remove"><span class="fa fa-times"></span></b-button>
             <b-button variant="outline-secondary" class="pull-right" @click="edit"><span class="fa fa-pencil"></span></b-button>
 
             <slot></slot>
@@ -44,6 +45,9 @@
         },
 
         methods: {
+            remove: function () {
+            },
+
             edit: function () {
                 this.value = this.notebook.name;
                 this.editing = true;
