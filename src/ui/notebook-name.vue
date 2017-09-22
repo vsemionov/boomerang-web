@@ -71,7 +71,7 @@
 
             save: function () {
                 const valid = this.valid;
-                if (valid == null || valid == true || valid == 'valid') {
+                if (valid === null || valid === true || valid === 'valid') {
                     this.editing = false;
                     this.working = true;
 
