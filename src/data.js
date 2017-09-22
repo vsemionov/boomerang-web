@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-import { getAuthToken } from './auth.js';
+import { getAuthorization } from './auth.js';
 
 
 const PAGE_SIZE = 24;
 
 
-function request(url, method, data, cancelToken, auth=true) {
+function request(url, method, data, cancelToken) {
     const config = {
         url: url,
         method: method,
@@ -17,21 +17,19 @@ function request(url, method, data, cancelToken, auth=true) {
         config.cancelToken = cancelToken;
     }
 
+    const auth = getAuthorization();
     if (auth) {
-        const authToken = getAuthToken();
-        if (authToken) {
-            config.headers = {
-                Authorization: `JWT ${authToken}`
-            };
-        }
+        config.headers = {
+            Authorization: auth
+        };
     }
 
     return axios.request(config)
         .then(response => response.data);
 }
 
-function getData(url, cancelToken, auth=true) {
-    return request(url, 'get', null, cancelToken, auth);
+function getData(url, cancelToken) {
+    return request(url, 'get', null, cancelToken);
 }
 
 function getListResults(data) {
@@ -49,7 +47,7 @@ function getList(baseUrl, page, cancelToken) {
 }
 
 export function getInfo(cancelToken) {
-    return getData(`info/`, cancelToken, false);
+    return getData(`info/`, cancelToken);
 }
 
 export function getNotebooks(username, page, cancelToken) {
@@ -68,14 +66,14 @@ export function getNotebook(username, notebook_id, cancelToken) {
     return getData(`users/${username}/notebooks/${notebook_id}/`, cancelToken);
 }
 
-function modifyObject(baseUrl, method, updated, data, cancelToken, auth=true) {
+function modifyObject(baseUrl, method, updated, data, cancelToken) {
     const url = `${baseUrl}?at=${updated}`;
 
-    return request(url, method, data, cancelToken, auth);
+    return request(url, method, data, cancelToken);
 }
 
-function patchObject(url, updated, data, cancelToken, auth=true) {
-    return modifyObject(url, 'patch', updated, data, cancelToken, auth);
+function patchObject(url, updated, data, cancelToken) {
+    return modifyObject(url, 'patch', updated, data, cancelToken);
 }
 
 export function renameNotebook(notebook, name, cancelToken) {

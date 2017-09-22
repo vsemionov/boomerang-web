@@ -1,8 +1,9 @@
 import axios from 'axios';
-import decode from 'jwt-decode';
 
 
-const JWT_KEY = 'jwt';
+const USERNAME_KEY = 'username';
+const TOKEN_KEY = 'token';
+const AUTH_TYPE = 'Token';
 
 
 export const authState = {
@@ -10,36 +11,27 @@ export const authState = {
 };
 
 
-export function getAuthToken() {
-    return localStorage.getItem(JWT_KEY);
+export function getAuthorization() {
+    const token = localStorage.getItem(TOKEN_KEY);
+    return token ? `${AUTH_TYPE} ${token}` : null;
 }
 
-function updateAuthStateFromToken(token) {
-    let username = null;
+export function updateAuthState() {
+    authState.username = localStorage.getItem(USERNAME_KEY);
+}
 
-    if (token) {
-        const payload = decode(token);
-        if (payload.exp * 1000 > Date.now()) {
-            username = payload.username;
-        }
-    }
+export function login(username, token) {
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(USERNAME_KEY, username);
 
     authState.username = username;
 }
 
-export function updateAuthState() {
-    const token = getAuthToken();
-    updateAuthStateFromToken(token);
-}
-
-export function login(token) {
-    localStorage.setItem(JWT_KEY, token);
-    updateAuthStateFromToken(token);
-}
-
 export function logout() {
-    localStorage.removeItem(JWT_KEY);
-    updateAuthStateFromToken(null);
+    authState.username = null;
+
+    localStorage.removeItem(USERNAME_KEY);
+    localStorage.removeItem(TOKEN_KEY);
 }
 
 export function authenticate(username, password) {
@@ -50,5 +42,6 @@ export function authenticate(username, password) {
         options.withCredentials = true;
     }
 
-    return axios.get('jwt/', options).then(response => login(response.data.token));
+    return axios.get('token/', options)
+        .then(response => login(response.data.username, response.data.token));
 }
