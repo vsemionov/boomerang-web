@@ -8,11 +8,11 @@
         <template v-else>
             <b-form @submit.prevent="save" @keydown.esc="cancel">
                 <b-form-row>
-                    <b-col cols="12" sm="12" md="8" lg="9" xl="10">
+                    <b-col col>
                         <b-form-input ref="input" type="text" v-model.trim="value" :state="valid"></b-form-input>
                         <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
                     </b-col>
-                    <b-col cols="12" sm="12" md="4" lg="3" xl="2">
+                    <b-col cols="12" md="auto" class="mt-2 mt-md-0">
                         <b-button type="submit" variant="primary">Save</b-button>
                         <b-button variant="secondary" @click="cancel">Cancel</b-button>
                     </b-col>
