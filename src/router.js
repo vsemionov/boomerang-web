@@ -80,7 +80,7 @@ export const breadcrumbs = {
     ],
     notes: [
         { text: 'Home', to: { name: 'index' } },
-        { text: 'Notebooks', to: { name: 'notebooks', params: ['username'] } },
+        { text: 'Notebooks', to: { name: 'notebooks' } },
         'Notes'
     ],
     tasks: [
