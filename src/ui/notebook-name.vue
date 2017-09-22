@@ -27,7 +27,7 @@
             Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?
         </b-modal>
 
-        <b-modal ref="errorModal" title="Error" ok-only ok-title="Close" :visible="!!error">
+        <b-modal title="Error" ok-only ok-title="Close" :visible="!!error" @hidden="error = null">
             <error :error="error"></error>
         </b-modal>
     </div>
