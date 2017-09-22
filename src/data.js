@@ -66,14 +66,18 @@ export function getNotebook(username, notebook_id, cancelToken) {
     return getData(`users/${username}/notebooks/${notebook_id}/`, cancelToken);
 }
 
-function modifyObject(baseUrl, method, updated, data, cancelToken) {
+function writeObject(baseUrl, method, updated, data, cancelToken) {
     const url = `${baseUrl}?at=${updated}`;
 
     return request(url, method, data, cancelToken);
 }
 
 function patchObject(url, updated, data, cancelToken) {
-    return modifyObject(url, 'patch', updated, data, cancelToken);
+    return writeObject(url, 'patch', updated, data, cancelToken);
+}
+
+function deleteObject(url, updated, cancelToken) {
+    return writeObject(url, 'delete', updated, cancelToken);
 }
 
 export function renameNotebook(notebook, name, cancelToken) {
@@ -82,4 +86,8 @@ export function renameNotebook(notebook, name, cancelToken) {
     };
 
     return patchObject(`users/${notebook.user}/notebooks/${notebook.id}/`, notebook.updated, data, cancelToken);
+}
+
+export function deleteNotebook(notebook, cancelToken) {
+    return deleteObject(`users/${notebook.user}/notebooks/${notebook.id}/`, notebook.updated, cancelToken);
 }
