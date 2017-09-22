@@ -5,21 +5,7 @@
         <template v-if="notebook">
 
             <template v-if="numPages || notes_error">
-                <template v-if="!editingNotebookName">
-                    <b-button variant="outline-secondary" class="pull-right" @click="editNotebookName"><span class="fa fa-pencil"></span></b-button>
-                    <h2>{{ notebook.name }}</h2>
-                </template>
-
-                <template v-else>
-                    <b-form @submit.prevent="saveNotebookName" @keydown.esc="cancelNotebookName">
-                        <b-input-group>
-                            <b-form-input ref="notebookNameInput" type="text" v-model.trim="enteredNotebookName" :state="notebookNameValid"></b-form-input>
-                            <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
-                            <b-input-group-button><b-button type="submit" variant="primary">Save</b-button></b-input-group-button>
-                            <b-input-group-button><b-button variant="secondary" @click="cancelNotebookName">Cancel</b-button></b-input-group-button>
-                        </b-input-group>
-                    </b-form>
-                </template>
+                <notebook-name :notebook="notebook"><h2>{{ notebook.name }}</h2></notebook-name>
             </template>
 
             <pager v-if="numPages" :currentPage="page" :numPages="numPages"></pager>
@@ -46,6 +32,7 @@
 
 <script>
     import { getNotebook, getNotes } from '../data.js';
+    import NotebookName from './notebook-name.vue';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
     import Error from './error.vue';
@@ -54,7 +41,7 @@
     export default {
         name: 'notes',
         props: ['username', 'notebook_id'],
-        components: { Pager, Spinner, Error },
+        components: { NotebookName, Pager, Spinner, Error },
         mixins: [loadable],
 
         data: function () {
@@ -65,16 +52,8 @@
                 notes_error: null,
                 notebook: null,
                 numPages: null,
-                notes: null,
-                editingNotebookName: false,
-                enteredNotebookName: false
+                notes: null
             };
-        },
-
-        computed: {
-            notebookNameValid: function () {
-                return this.enteredNotebookName.length > 0 && this.enteredNotebookName.length <= 128 ? null : false;
-            }
         },
 
         methods: {
@@ -122,24 +101,6 @@
                             this.working = false;
                         }
                     });
-            },
-
-            editNotebookName: function () {
-                this.enteredNotebookName = this.notebook.name;
-                this.editingNotebookName = true;
-                this.$nextTick(() => this.$refs.notebookNameInput.focus());
-            },
-
-            cancelNotebookName: function () {
-                this.editingNotebookName = false;
-            },
-
-            saveNotebookName: function () {
-                const notebookNameValid = this.notebookNameValid;
-                if (notebookNameValid == null || notebookNameValid == true || notebookNameValid == 'valid') {
-                    this.editingNotebookName = false;
-                    this.notebook.name = this.enteredNotebookName;
-                }
             }
         }
     };
