@@ -29,7 +29,7 @@
 
         <spinner v-if="working"></spinner>
 
-        <error v-if="error" :error="error"></error>
+        <alert v-if="error" :error="error"></alert>
     </div>
 </template>
 
@@ -38,11 +38,11 @@
     import { BASE_URL } from '../../urls.js';
     import { authenticate } from '../../auth.js';
     import Spinner from '../spinner.vue';
-    import Error from '../error.vue';
+    import Alert from '../alert.vue';
 
     export default {
         name: 'login',
-        components: { Spinner, Error },
+        components: { Spinner, Alert },
 
         data: function () {
             return {

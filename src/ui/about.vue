@@ -8,7 +8,7 @@
             <p>API version: {{ info.app.version }}</p>
         </template>
 
-        <error v-if="error" :error="error"></error>
+        <alert v-if="error" :error="error"></alert>
 
         <spinner v-if="working"></spinner>
     </div>
@@ -19,12 +19,12 @@
     import { version } from '../../package.json';
     import { getInfo } from '../data.js';
     import Spinner from './spinner.vue';
-    import Error from './error.vue';
+    import Alert from './alert.vue';
     import loadable from './loadable.js';
 
     export default {
         name: 'about',
-        components: { Spinner, Error },
+        components: { Spinner, Alert },
         mixins: [loadable],
 
         data: function () {

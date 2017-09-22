@@ -1,7 +1,7 @@
 <template>
     <div>
         <spinner v-if="!error"></spinner>
-        <error v-else :error="error"></error>
+        <alert v-else :error="error"></alert>
     </div>
 </template>
 
@@ -9,11 +9,11 @@
 <script>
     import { authenticate } from '../../auth.js';
     import Spinner from '../spinner.vue';
-    import Error from '../error.vue';
+    import Alert from '../alert.vue';
 
     export default {
         name: 'callback',
-        components: { Spinner, Error },
+        components: { Spinner, Alert },
 
         data: function () {
             return {

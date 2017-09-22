@@ -13,7 +13,7 @@
             </b-col>
         </b-row>
 
-        <error v-if="error" :error="error"></error>
+        <alert v-if="error" :error="error"></alert>
 
         <spinner v-if="working"></spinner>
     </div>
@@ -24,13 +24,13 @@
     import { getNotebooks } from '../data.js';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
-    import Error from './error.vue';
+    import Alert from './alert.vue';
     import loadable from './loadable.js';
 
     export default {
         name: 'notebooks',
         props: ['username'],
-        components: { Pager, Spinner, Error },
+        components: { Pager, Spinner, Alert },
         mixins: [loadable],
 
         data: function () {

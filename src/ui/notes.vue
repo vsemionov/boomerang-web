@@ -20,10 +20,10 @@
                 </b-col>
             </b-row>
 
-            <error v-if="notes_error" :error="notes_error"></error>
+            <alert v-if="notes_error" :error="notes_error"></alert>
         </template>
 
-        <error v-if="notebook_error" :error="notebook_error"></error>
+        <alert v-if="notebook_error" :error="notebook_error"></alert>
 
         <spinner v-if="working"></spinner>
     </div>
@@ -35,13 +35,13 @@
     import NotebookName from './notebook-name.vue';
     import Pager from './pager.vue';
     import Spinner from './spinner.vue';
-    import Error from './error.vue';
+    import Alert from './alert.vue';
     import loadable from './loadable.js';
 
     export default {
         name: 'notes',
         props: ['username', 'notebook_id'],
-        components: { NotebookName, Pager, Spinner, Error },
+        components: { NotebookName, Pager, Spinner, Alert },
         mixins: [loadable],
 
         data: function () {
