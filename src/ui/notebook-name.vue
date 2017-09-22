@@ -7,12 +7,22 @@
 
         <template v-else>
             <b-form @submit.prevent="save" @keydown.esc="cancel">
-                <b-input-group>
-                    <b-form-input ref="input" type="text" v-model.trim="value" :state="valid"></b-form-input>
-                    <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
-                    <b-input-group-button><b-button type="submit" variant="primary">Save</b-button></b-input-group-button>
-                    <b-input-group-button><b-button variant="secondary" @click="cancel">Cancel</b-button></b-input-group-button>
-                </b-input-group>
+                <b-row>
+                    <b-col cols="12" sm="7" md="8" lg="9" xl="9">
+                        <b-form-input ref="input" type="text" v-model.trim="value" :state="valid"></b-form-input>
+                        <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
+                    </b-col>
+                    <b-col cols="12" sm="5" md="4" lg="3" xl="3">
+                        <b-row>
+                            <b-col cols="6">
+                                <b-button type="submit" variant="primary" block>Save</b-button>
+                            </b-col>
+                            <b-col cols="6">
+                                <b-button variant="secondary" @click="cancel" block>Cancel</b-button>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                </b-row>
             </b-form>
         </template>
     </div>
