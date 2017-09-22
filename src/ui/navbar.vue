@@ -14,14 +14,14 @@
             <b-nav is-nav-bar class="ml-auto">
 
                 <template v-if="!authState.username">
-                    <b-nav-item :to="{ name: 'login' }"><span class="fa fa-sign-in"></span>&nbsp;Log In</b-nav-item>
-                    <b-nav-item :href="apiAccountsBaseUrl + 'signup/'" target="_blank"><span class="fa fa-check-square-o"></span>&nbsp;Sign Up</b-nav-item>
+                    <b-nav-item :to="{ name: 'login' }"><span class="fa fa-sign-in fa-fw"></span>Log In</b-nav-item>
+                    <b-nav-item :href="apiAccountsBaseUrl + 'signup/'" target="_blank"><span class="fa fa-check-square-o fa-fw"></span>Sign Up</b-nav-item>
                 </template>
 
                 <template v-else>
-                    <b-nav-item-dropdown :text="'<span class=\'fa fa-user\'></span>&nbsp;' + authState.username" right>
-                        <b-dropdown-item :href="apiAccountsBaseUrl + 'email/'" target="_blank"><span class="fa fa-cog"></span>&nbsp;Settings</b-dropdown-item>
-                        <b-dropdown-item :to="{ name: 'logout' }"><span class="fa fa-sign-out"></span>&nbsp;Log Out</b-dropdown-item>
+                    <b-nav-item-dropdown :text="'<span class=\'fa fa-user fa-fw\'></span>' + authState.username" right>
+                        <b-dropdown-item :href="apiAccountsBaseUrl + 'email/'" target="_blank"><span class="fa fa-cog fa-fw"></span>Settings</b-dropdown-item>
+                        <b-dropdown-item :to="{ name: 'logout' }"><span class="fa fa-sign-out fa-fw"></span>Log Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </template>
 
