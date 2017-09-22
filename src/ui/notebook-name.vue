@@ -2,6 +2,7 @@
     <div>
         <template v-if="!editing">
             <b-button variant="outline-secondary" class="pull-right" @click="edit"><span class="fa fa-pencil"></span></b-button>
+
             <slot></slot>
         </template>
 
@@ -12,6 +13,7 @@
                         <b-form-input ref="input" type="text" v-model.trim="value" :state="valid"></b-form-input>
                         <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
                     </b-col>
+
                     <b-col cols="12" md="auto" class="mt-2 mt-md-0">
                         <b-button type="submit" variant="primary">Save</b-button>
                         <b-button variant="secondary" @click="cancel">Cancel</b-button>
