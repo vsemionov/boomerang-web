@@ -23,7 +23,7 @@
             <alert v-if="notes_error" :error="notes_error"></alert>
         </template>
 
-        <alert v-if="notebook_error" :error="notebook_error"></alert>
+        <alert v-if="notebook_error" :error="notebook_error" class="mt-4"></alert>
 
         <spinner v-if="working"></spinner>
     </div>

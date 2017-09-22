@@ -29,7 +29,7 @@
 
         <spinner v-if="working"></spinner>
 
-        <alert v-if="error" :error="error"></alert>
+        <alert v-if="error" :error="error" class="mt-4"></alert>
     </div>
 </template>
 

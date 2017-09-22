@@ -1,7 +1,7 @@
 <template>
     <div>
         <spinner v-if="!error"></spinner>
-        <alert v-else :error="error"></alert>
+        <alert v-else :error="error" class="mt-2"></alert>
     </div>
 </template>
 

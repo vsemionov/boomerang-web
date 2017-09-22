@@ -8,7 +8,7 @@
             <p>API version: {{ info.app.version }}</p>
         </template>
 
-        <alert v-if="error" :error="error"></alert>
+        <alert v-if="error" :error="error" class="mt-4"></alert>
 
         <spinner v-if="working"></spinner>
     </div>
