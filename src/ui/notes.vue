@@ -11,12 +11,14 @@
                 </template>
 
                 <template v-else>
-                    <b-input-group>
-                        <b-form-input type="text" v-model.trim="notebook.name" :state="inputState"></b-form-input>
-                        <b-form-feedback>Enter at most 128 characters</b-form-feedback>
-                        <b-input-group-button><b-button variant="primary">Save</b-button></b-input-group-button>
-                        <b-input-group-button><b-button variant="secondary">Cancel</b-button></b-input-group-button>
-                    </b-input-group>
+                    <b-form @submit.prevent="save" @keydown.esc="cancel">
+                        <b-input-group>
+                            <b-form-input ref="input" type="text" v-model.trim="notebook.name" :state="inputState"></b-form-input>
+                            <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
+                            <b-input-group-button><b-button type="submit" variant="primary">Save</b-button></b-input-group-button>
+                            <b-input-group-button><b-button variant="secondary" @click="cancel">Cancel</b-button></b-input-group-button>
+                        </b-input-group>
+                    </b-form>
                 </template>
             </template>
 
@@ -70,7 +72,7 @@
 
         computed: {
             inputState: function () {
-                return this.notebook.name.length <= 128 ? null : false;
+                return this.notebook.name.length > 0 && this.notebook.name.length <= 128 ? null : false;
             }
         },
         
@@ -123,6 +125,18 @@
 
             edit: function () {
                 this.editing = true;
+                this.$nextTick(() => this.$refs.input.focus())
+            },
+
+            cancel: function () {
+                this.editing = false;
+            },
+
+            save: function () {
+                const inputState = this.inputState;
+                if (inputState == null || inputState == true || inputState == 'valid') {
+                    this.editing = false;
+                }
             }
         }
     };
