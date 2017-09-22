@@ -79,7 +79,7 @@
                     this.working = true;
 
                     renameNotebook(this.notebook, this.value)
-                        .then(notebook => this.notebook.name = notebook.name)
+                        .then(notebook => { this.notebook.updated = notebook.updated; this.notebook.name = notebook.name; })
                         .catch(error => this.error = error)
                         .then(() => this.working = false);
                 }

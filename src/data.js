@@ -69,7 +69,7 @@ export function getNotebook(username, notebook_id, cancelToken) {
 }
 
 function modifyObject(baseUrl, method, updated, data, cancelToken, auth=true) {
-    const url = `${baseUrl}&at=${updated}`;
+    const url = `${baseUrl}?at=${updated}`;
 
     return request(url, method, data, cancelToken, auth);
 }
