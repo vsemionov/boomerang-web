@@ -27,7 +27,7 @@
             Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?
         </b-modal>
 
-        <b-modal title="Error" ok-only ok-title="Close" :visible="!!error" @hidden="error = null">
+        <b-modal v-if="error" title="Error" ok-only ok-title="Close" :visible="true" @hidden="error = null">
             <error :error="error"></error>
         </b-modal>
     </div>
@@ -59,9 +59,6 @@
         },
 
         methods: {
-            remove: function () {
-            },
-
             edit: function () {
                 this.value = this.notebook.name;
                 this.editing = true;
@@ -83,6 +80,9 @@
                         .catch(error => this.error = error)
                         .then(() => this.working = false);
                 }
+            },
+
+            remove: function () {
             }
         }
     };
