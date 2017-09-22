@@ -1,6 +1,6 @@
 <template>
     <div>
-        <template v-if="!editing">
+        <template v-if="!editing && !working">
             <b-button variant="outline-secondary" class="pull-right" v-b-tooltip.hover.top title="Delete" v-b-modal.confirm><span class="fa fa-times"></span></b-button>
             <b-button variant="outline-secondary" class="pull-right" @click="edit" v-b-tooltip.hover.top title="Edit"><span class="fa fa-pencil"></span></b-button>
 
@@ -11,13 +11,13 @@
             <b-form @submit.prevent="save" @keydown.esc="cancel">
                 <b-form-row>
                     <b-col col>
-                        <b-form-input ref="input" type="text" v-model.trim="value" :state="valid"></b-form-input>
+                        <b-form-input ref="input" type="text" v-model.trim="value" :state="valid"  :disabled="working"></b-form-input>
                         <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
                     </b-col>
 
                     <b-col cols="12" md="auto" class="mt-2 mt-md-0">
-                        <b-button type="submit" variant="primary">Save</b-button>
-                        <b-button variant="secondary" @click="cancel">Cancel</b-button>
+                        <b-button type="submit" variant="primary"  :disabled="working">Save<span v-if="working" class="fa fa-circle-o-notch fa-spin fa-fw"></span></b-button>
+                        <b-button variant="secondary" @click="cancel" :disabled="working">Cancel</b-button>
                     </b-col>
                 </b-form-row>
             </b-form>
@@ -38,7 +38,8 @@
         data: function () {
             return {
                 editing: false,
-                value: false
+                value: false,
+                working: false
             };
         },
 
@@ -66,6 +67,7 @@
                 const valid = this.valid;
                 if (valid == null || valid == true || valid == 'valid') {
                     this.editing = false;
+                    this.working = true;
                     this.notebook.name = this.value;
                 }
             }
