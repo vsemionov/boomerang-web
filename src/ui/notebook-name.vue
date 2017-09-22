@@ -1,7 +1,7 @@
 <template>
     <div>
         <template v-if="!editing && !working">
-            <b-button variant="outline-secondary" class="pull-right" v-b-tooltip.hover.top title="Delete" v-b-modal.confirm><span class="fa fa-times"></span></b-button>
+            <b-button variant="outline-secondary" class="pull-right" v-b-tooltip.hover.top title="Delete" v-b-modal.confirmModal><span class="fa fa-times"></span></b-button>
             <b-button variant="outline-secondary" class="pull-right" @click="edit" v-b-tooltip.hover.top title="Edit"><span class="fa fa-pencil"></span></b-button>
 
             <slot></slot>
@@ -23,23 +23,32 @@
             </b-form>
         </template>
 
-        <b-modal id="confirm" title="Confirm deletion" ok-title="Delete" ok-variant="danger" @ok="remove">
+        <b-modal id="confirmModal" title="Confirm deletion" ok-title="Delete" ok-variant="danger" @ok="remove">
             Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?
+        </b-modal>
+
+        <b-modal ref="errorModal" title="Error" ok-only ok-title="Close" v-model="error">
+            <error :error="error"></error>
         </b-modal>
     </div>
 </template>
 
 
 <script>
+    import axios from 'axios'; //////////////////
+    import Error from './error.vue';
+
     export default {
         name: 'notebook-name',
+        components: { Error },
         props: ['notebook'],
 
         data: function () {
             return {
                 editing: false,
                 value: false,
-                working: false
+                working: false,
+                error: null
             };
         },
 
@@ -69,6 +78,7 @@
                     this.editing = false;
                     this.working = true;
                     this.notebook.name = this.value;
+                    axios.get('test/').catch((error) => this.error = error).then(() => this.working = false); /////////
                 }
             }
         }
