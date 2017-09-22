@@ -5,18 +5,18 @@
         <template v-if="notebook">
 
             <template v-if="numPages || notes_error">
-                <template v-if="!editing">
-                    <b-button variant="outline-secondary" class="pull-right" @click="edit"><span class="fa fa-pencil"></span></b-button>
+                <template v-if="!editingNotebookName">
+                    <b-button variant="outline-secondary" class="pull-right" @click="editNotebookName"><span class="fa fa-pencil"></span></b-button>
                     <h2>{{ notebook.name }}</h2>
                 </template>
 
                 <template v-else>
-                    <b-form @submit.prevent="save" @keydown.esc="cancel">
+                    <b-form @submit.prevent="saveNotebookName" @keydown.esc="cancelNotebookName">
                         <b-input-group>
-                            <b-form-input ref="input" type="text" v-model.trim="notebook.name" :state="inputState"></b-form-input>
+                            <b-form-input ref="notebookNameInput" type="text" v-model.trim="notebook.name" :state="notebookNameValid"></b-form-input>
                             <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
                             <b-input-group-button><b-button type="submit" variant="primary">Save</b-button></b-input-group-button>
-                            <b-input-group-button><b-button variant="secondary" @click="cancel">Cancel</b-button></b-input-group-button>
+                            <b-input-group-button><b-button variant="secondary" @click="cancelNotebookName">Cancel</b-button></b-input-group-button>
                         </b-input-group>
                     </b-form>
                 </template>
@@ -66,16 +66,16 @@
                 notebook: null,
                 numPages: null,
                 notes: null,
-                editing: false
+                editingNotebookName: false
             };
         },
 
         computed: {
-            inputState: function () {
+            notebookNameValid: function () {
                 return this.notebook.name.length > 0 && this.notebook.name.length <= 128 ? null : false;
             }
         },
-        
+
         methods: {
             load: function (cancelToken) {
                 this.page = parseInt(this.$route.query.page) || 1;
@@ -123,19 +123,19 @@
                     });
             },
 
-            edit: function () {
-                this.editing = true;
-                this.$nextTick(() => this.$refs.input.focus())
+            editNotebookName: function () {
+                this.editingNotebookName = true;
+                this.$nextTick(() => this.$refs.notebookNameInput.focus())
             },
 
-            cancel: function () {
-                this.editing = false;
+            cancelNotebookName: function () {
+                this.editingNotebookName = false;
             },
 
-            save: function () {
-                const inputState = this.inputState;
-                if (inputState == null || inputState == true || inputState == 'valid') {
-                    this.editing = false;
+            saveNotebookName: function () {
+                const notebookNameValid = this.notebookNameValid;
+                if (notebookNameValid == null || notebookNameValid == true || notebookNameValid == 'valid') {
+                    this.editingNotebookName = false;
                 }
             }
         }
