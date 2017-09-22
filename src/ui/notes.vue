@@ -13,7 +13,7 @@
                 <template v-else>
                     <b-form @submit.prevent="saveNotebookName" @keydown.esc="cancelNotebookName">
                         <b-input-group>
-                            <b-form-input ref="notebookNameInput" type="text" v-model.trim="notebook.name" :state="notebookNameValid"></b-form-input>
+                            <b-form-input ref="notebookNameInput" type="text" v-model.trim="enteredNotebookName" :state="notebookNameValid"></b-form-input>
                             <b-form-feedback>Enter 1 to 128 characters</b-form-feedback>
                             <b-input-group-button><b-button type="submit" variant="primary">Save</b-button></b-input-group-button>
                             <b-input-group-button><b-button variant="secondary" @click="cancelNotebookName">Cancel</b-button></b-input-group-button>
@@ -66,13 +66,14 @@
                 notebook: null,
                 numPages: null,
                 notes: null,
-                editingNotebookName: false
+                editingNotebookName: false,
+                enteredNotebookName: false
             };
         },
 
         computed: {
             notebookNameValid: function () {
-                return this.notebook.name.length > 0 && this.notebook.name.length <= 128 ? null : false;
+                return this.enteredNotebookName.length > 0 && this.enteredNotebookName.length <= 128 ? null : false;
             }
         },
 
@@ -124,6 +125,7 @@
             },
 
             editNotebookName: function () {
+                this.enteredNotebookName = this.notebook.name;
                 this.editingNotebookName = true;
                 this.$nextTick(() => this.$refs.notebookNameInput.focus());
             },
@@ -136,6 +138,7 @@
                 const notebookNameValid = this.notebookNameValid;
                 if (notebookNameValid == null || notebookNameValid == true || notebookNameValid == 'valid') {
                     this.editingNotebookName = false;
+                    this.notebook.name = this.enteredNotebookName;
                 }
             }
         }
