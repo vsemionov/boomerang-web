@@ -125,7 +125,7 @@
 
             editNotebookName: function () {
                 this.editingNotebookName = true;
-                this.$nextTick(() => this.$refs.notebookNameInput.focus())
+                this.$nextTick(() => this.$refs.notebookNameInput.focus());
             },
 
             cancelNotebookName: function () {
