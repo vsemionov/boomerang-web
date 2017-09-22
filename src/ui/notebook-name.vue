@@ -1,7 +1,7 @@
 <template>
     <div>
         <template v-if="!editing">
-            <b-button variant="outline-secondary" class="pull-right" @click="remove" v-b-tooltip.hover.top title="Delete"><span class="fa fa-times"></span></b-button>
+            <b-button variant="outline-secondary" class="pull-right" v-b-tooltip.hover.top title="Delete" v-b-modal.confirm><span class="fa fa-times"></span></b-button>
             <b-button variant="outline-secondary" class="pull-right" @click="edit" v-b-tooltip.hover.top title="Edit"><span class="fa fa-pencil"></span></b-button>
 
             <slot></slot>
@@ -22,6 +22,10 @@
                 </b-form-row>
             </b-form>
         </template>
+
+        <b-modal id="confirm" title="Confirm deletion" ok-title="Delete" ok-variant="danger" @ok="remove">
+            Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?
+        </b-modal>
     </div>
 </template>
 
