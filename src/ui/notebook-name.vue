@@ -23,8 +23,9 @@
             </b-form>
         </template>
 
-        <b-modal ref="confirmModal" id="confirmModal" title="Confirm deletion" ok-title="Delete" ok-variant="danger" @ok="remove" @hide="hide" @hidden="hidden">
+        <b-modal ref="confirmModal" id="confirmModal" title="Confirm deletion" ok-variant="danger" :ok-disabled="deleting || deleted || error" :ok-only="deleting || deleted || error" @ok="remove" @hide="hide" @hidden="hidden">
             <span>Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?</span>
+            <span slot="modal-ok">Delete<span v-if="deleting" class="fa fa-circle-o-notch fa-spin fa-fw"></span></span>
         </b-modal>
 
         <b-modal v-if="error" title="Error" ok-only ok-title="Close" :visible="true" @hidden="error = null">
