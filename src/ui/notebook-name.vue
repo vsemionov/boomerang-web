@@ -23,36 +23,33 @@
             </b-form>
         </template>
 
-        <b-modal id="confirmModal" title="Confirm deletion" ok-title="Delete" ok-variant="danger" @ok="confirmed = true" @hidden="handleDelete">
-            Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?
+        <b-modal ref="confirmModal" id="confirmModal" title="Confirm deletion" ok-title="Delete" ok-variant="danger" @ok="remove" @hide="hide" @hidden="hidden">
+            <span>Are you sure you want to delete notebook <b>{{ notebook.name }}</b>?</span>
         </b-modal>
 
         <b-modal v-if="error" title="Error" ok-only ok-title="Close" :visible="true" @hidden="error = null">
             <error :error="error"></error>
         </b-modal>
-
-        <spinner v-if="deleting"></spinner>
     </div>
 </template>
 
 
 <script>
     import { renameNotebook, deleteNotebook } from '../data.js';
-    import Spinner from './spinner.vue';
     import Error from './error.vue';
 
     export default {
         name: 'notebook-name',
-        components: { Spinner, Error },
+        components: { Error },
         props: ['notebook'],
 
         data: function () {
             return {
                 editing: false,
                 value: false,
-                confirmed: false,
                 renaming: false,
                 deleting: false,
+                deleted: false,
                 error: null
             };
         },
@@ -87,15 +84,27 @@
                 }
             },
 
-            handleDelete: function () {
-                if (this.confirmed) {
-                    this.confirmed = false;
-                    this.deleting = true;
+            remove: function () {
+                const confirmModal = this.$refs.confirmModal;
 
-                    deleteNotebook(this.notebook)
-                        .then(() => this.$router.push({ name: 'notebooks' }))
-                        .catch(error => this.error = error)
-                        .then(() => this.deleting = false);
+                this.deleting = true;
+
+                deleteNotebook(this.notebook)
+                    .then(() => this.deleted = true)
+                    .catch(error => this.error = error)
+                    .then(() => { this.deleting = false; confirmModal.hide(); });
+            },
+
+            hide: function (event) {
+                if (this.deleting) {
+                    event.preventDefault();
+                }
+            },
+
+            hidden: function () {
+                if (this.deleted) {
+                    this.deleted = false;
+                    this.$router.push({ name: 'notebooks' });
                 }
             }
         }
