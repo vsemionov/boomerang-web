@@ -41,8 +41,8 @@
 
     export default {
         name: 'notebook-name',
-        components: { Error },
         props: ['notebook'],
+        components: { Error },
 
         data: function () {
             return {
