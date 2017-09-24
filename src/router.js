@@ -44,7 +44,7 @@ const routes = [
         props: true
     },
     {
-        path: '/notebooks/:username/:notebook_id',
+        path: '/notes/:username/:notebook_id',
         name: 'notes',
         component: Notes,
         props: true
